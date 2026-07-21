@@ -1,0 +1,195 @@
+/* Inscription.css */
+
+:root {
+  /* Fond */
+  --color-bg-dark: #0f172a;
+  --color-bg-medium: #1e293b;
+  --color-bg-gradient: linear-gradient(
+    135deg,
+    var(--color-bg-dark) 0%,
+    var(--color-bg-medium) 100%
+  );
+
+  /* Accent bleu ciel */
+  --color-accent: #38bdf8;
+  --color-accent-dark: #0ea5e9;
+  --color-accent-light: #7dd3fc;
+  --color-accent-gradient: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-accent-dark)
+  );
+
+  /* Texte */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  /* Bordures / surfaces */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.12);
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-accent-surface: rgba(56, 189, 248, 0.08);
+  --color-accent-ring: rgba(56, 189, 248, 0.15);
+  --color-accent-shadow: rgba(56, 189, 248, 0.35);
+  --color-danger: #f97316;
+
+  /* Ombres */
+  --shadow-container: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+  /* Rayons / transitions communs */
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --transition-fast: 0.2s ease;
+}
+
+.register-container {
+  max-width: 460px;
+  margin: 30px auto;
+  padding: 30px 30px;
+  background: var(--color-bg-gradient);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-container);
+  box-sizing: border-box;
+}
+
+/* Titre d'intro */
+.register-container > p:first-child {
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+/* Formulaire */
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.register-container form br {
+  display: none;
+}
+
+.register-container label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.register-container label:not(:first-of-type) {
+  margin-top: 14px;
+}
+
+.register-container .required {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.register-container input[type="text"],
+.register-container input[type="tel"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.register-container input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.register-container input[type="text"]:focus,
+.register-container input[type="tel"]:focus,
+.register-container input[type="email"]:focus,
+.register-container input[type="password"]:focus {
+  border-color: var(--color-accent);
+  background: var(--color-accent-surface);
+  box-shadow: 0 0 0 3px var(--color-accent-ring);
+}
+
+/* Bouton principal */
+.register-container form button[type="submit"] {
+  margin-top: 26px;
+  padding: 12px 16px;
+  background: var(--color-accent-gradient);
+  color: var(--color-bg-dark);
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.register-container form button[type="submit"]:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px var(--color-accent-shadow);
+}
+
+.register-container form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Neutralise les contours de focus */
+.register-container *:focus,
+.register-container *:focus-visible {
+  outline: none;
+}
+
+.register-container button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-container {
+    margin: 30px 16px;
+    padding: 30px 22px;
+  }
+}
+
+.champn-requis {
+  color: var(--color-danger);
+  text-align: center;
+  margin-bottom: 10px;
+  padding-top: 0;
+}
+/* 
+.body-Inscription {
+  background: linear-gradient(135deg, #1f2937, #111827);
+  width: 100vw;
+  height: 100vh;
+  padding-top: 0;
+  margin-top: 0;
+  /* filter: blur(80px); */
+/* border-radius: 50%; */
+
+/* 
+@media (max-width: 480px) {
+  body {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+      url("/fond_mobile.png") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+} */
