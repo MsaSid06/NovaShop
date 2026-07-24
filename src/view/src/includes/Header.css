@@ -62,18 +62,21 @@
   transition: all ease-in-out 1s;
 }
 
-.header-logo span {
+/* .header-logo span {
   width: 110px;
   height: 30px;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
-}
-.header-logo span:hover {
-  background: rgba(56, 189, 248, 0.1);
+}*/
 
-  color: white;
+.header-logo span:hover {
+  /* background: rgba(56, 189, 248, 0.1); */
+  /* transform: scale(4); */
+  /* color: linear-gradient(135deg, #38bdf8, #0ea5e9); */
+  color: #38bdf8;
 }
+
 .header-logo i {
   width: 38px;
 

@@ -1,0 +1,194 @@
+:root {
+  /* Couleurs */
+  --avis-bg: #ffffff;
+  --avis-text: #0f172a;
+  --avis-text-light: #64748b;
+
+  --avis-primary: #2563eb;
+  --avis-primary-light: #dbeafe;
+
+  --avis-star: #f59e0b;
+
+  --avis-border: #e2e8f0;
+
+  /* Style */
+  --avis-radius: 18px;
+
+  --avis-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+
+  --avis-shadow-hover: 0 15px 35px rgba(15, 23, 42, 0.15);
+
+  --avis-transition: 0.3s ease;
+}
+
+/* =========================
+   CONTENEUR DES AVIS
+========================= */
+
+.avis-container {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 30px;
+}
+
+/* =========================
+   CARTE AVIS
+========================= */
+
+.avis-card {
+  background: var(--avis-bg);
+
+  border: 1px solid var(--avis-border);
+
+  border-radius: var(--avis-radius);
+
+  padding: 25px;
+
+  box-shadow: var(--avis-shadow);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  transition: var(--avis-transition);
+}
+
+.avis-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: var(--avis-shadow-hover);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.avis-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
+
+/* Avatar */
+
+.avis-avatar {
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: var(--avis-primary);
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+/* Nom */
+
+.avis-nom {
+  margin: 0;
+
+  color: var(--avis-text);
+
+  font-size: 1rem;
+
+  font-weight: 700;
+}
+
+/* Etoiles */
+
+/* .avis-note {
+  margin: 4px 0 0;
+
+  color: var(--avis-star);
+
+  letter-spacing: 2px;
+
+  font-size: 30px;
+}
+
+.avis-note:hover{
+
+} */
+
+.avis-note {
+  color: var(--avis-star);
+  letter-spacing: 2px;
+  font-size: 18px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.avis-note:hover {
+  font-size: 30px;
+  letter-spacing: 4px;
+  filter: brightness(1.2);
+}
+
+/* =========================
+   COMMENTAIRE
+========================= */
+
+.avis-message {
+  color: var(--avis-text-light);
+
+  line-height: 1.6;
+
+  font-size: 0.95rem;
+
+  margin: 0 0 20px;
+}
+
+/* =========================
+   DATE
+========================= */
+
+.avis-date {
+  color: var(--avis-text-light);
+
+  font-size: 0.85rem;
+
+  border-top: 1px solid var(--avis-border);
+
+  padding-top: 15px;
+
+  margin: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+  .avis-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .avis-container {
+    grid-template-columns: 1fr;
+  }
+
+  .avis-card {
+    padding: 20px;
+  }
+}

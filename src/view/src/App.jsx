@@ -10,7 +10,9 @@ import Footer from "./includes/Footer.jsx";
 import Header from "./includes/Header.jsx";
 import Avis from "./composant/Avis.jsx";
 import Panier from "./composant/Panier.jsx";
+import DetailsProduits from "./composant/DetailsProduit.jsx";
 import "./App.css";
+import Apropos from "./composant/Apropos.jsx";
 
 // import Dashboard_proprietaire from "./view/Dashboard_proprietaire.jsx";
 // import { AuthProvider } from "./context/Auth.jsx";
@@ -32,9 +34,11 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/Avis" element={<Avis />} />
+            <Route path="/Apropos" element={<Apropos />} />
             <Route path="/panier" element={<Panier />} />
             <Route path="/client" element={<Dashboard_client />} />
             <Route path="/produit" element={<Produit />} />
+            <Route path="/DetailsProduits" element={<DetailsProduits />} />
             {/* <Route path="/proprietaire" element={<Dashboard_proprietaire />} /> */}
           </Routes>
         </main>

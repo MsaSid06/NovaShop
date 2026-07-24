@@ -12,16 +12,19 @@ function Header() {
   const [estConnecter, setEstConnecter] = useState(false);
   const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    async function verif_connection() {
-      const response = await fetch(
-        "http://localhost/Boutique/src/controllers/est_connecter.php",
-      );
-      const resultat = await response.json();
-      setEstConnecter(resultat.connecter);
-    }
-    verif_connection();
-  }, [user]);
+  useEffect(
+    () => async () => {
+      async function verif_connection() {
+        const response = await fetch(
+          "http://localhost/Boutique/src/controllers/est_connecter.php",
+        );
+        const resultat = await response.json();
+        setEstConnecter(resultat.connecter);
+      }
+      verif_connection();
+    },
+    [user],
+  );
 
   function redirect(lien) {
     navigate(lien);
@@ -42,7 +45,7 @@ function Header() {
   }
 
   return (
-    <header className="header">
+    <header className="header" id="header">
       <script src="https://cdn.tailwindcss.com"></script>
       <div className="header-container">
         {/* Logo */}
@@ -65,7 +68,7 @@ function Header() {
         {/* Navigation */}
         <nav className={`header-nav ${menuOpen ? "open" : ""}`}>
           <ul>
-            <li onClick={() => redirect("/")}>
+            <li onClick={() => allerVers("header")}>
               <i className="fa-solid fa-house"></i> Accueil
             </li>
 
@@ -73,8 +76,8 @@ function Header() {
               <i className="fa-solid fa-bag-shopping"></i> Produit
             </li>
 
-            <li onClick={() => allerVers("footer")}>
-              <i className="fa-solid fa-envelope"></i> Contact
+            <li onClick={() => redirect("/Apropos")}>
+              <i className="fa-solid fa-envelope"></i> A Propos
             </li>
 
             <li onClick={() => allerVers("avis")}>

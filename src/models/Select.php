@@ -67,7 +67,7 @@ function getProduit()
 {
     global $pdo;
     try {
-        $sql = "SELECT p.*, i.chemin_fichier , c.nom_categorie, c.id_categorie FROM Produit p  Left JOIN Images_Produit i ON p.id_produit = i.id_produit LEFT JOIN Categorie c ON p.id_categorie = c.id_categorie GROUP BY p.id_produit;";
+        $sql = "SELECT p.*, i.chemin_fichier , c.nom_categorie, c.id_categorie FROM Produit p  Left JOIN Images_Produit i ON p.id_produit = i.id_produit LEFT JOIN Categorie c ON p.id_categorie = c.id_categorie GROUP BY p.id_produit HAVING stock_actuel > 0 ;";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $Produit = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -100,6 +100,20 @@ function getCommande()
     global $pdo;
     try {
         $sql = "SELECT * FROM Commande";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $Commande = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $Commande;
+
+    } catch (Exception $e) {
+        return $e->getCode();
+    }
+}
+function getCommandeEncours()
+{
+    global $pdo;
+    try {
+        $sql = "SELECT * FROM Commande where statut = 'Livrer' ";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $Commande = $stmt->fetchAll(PDO::FETCH_ASSOC);

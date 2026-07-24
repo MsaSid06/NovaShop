@@ -203,3 +203,21 @@
     align-self: flex-end;
   }
 }
+
+
+.login {
+  min-height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 60px 20px;
+
+  background: linear-gradient(135deg, #1f2937, #111827);
+  /* url("/assets/login-bg.jpg"); */
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

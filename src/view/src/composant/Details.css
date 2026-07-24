@@ -1,0 +1,284 @@
+/* Details.css */
+
+:root {
+  --color-bg-dark: #0f172a;
+  --color-bg-medium: #1e293b;
+  --color-bg-gradient: linear-gradient(
+    135deg,
+    var(--color-bg-dark) 0%,
+    var(--color-bg-medium) 100%
+  );
+
+  --color-accent: #38bdf8;
+  --color-accent-dark: #0ea5e9;
+  --color-accent-light: #7dd3fc;
+  --color-accent-gradient: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-accent-dark)
+  );
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.12);
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-accent-surface: rgba(56, 189, 248, 0.08);
+  --color-accent-shadow: rgba(56, 189, 248, 0.35);
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Overlay gris derrière la fenêtre de détails --- */
+.details-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+  box-sizing: border-box;
+  animation: overlay-fade var(--transition-medium);
+}
+
+@keyframes overlay-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Carte de détails : ne prend pas tout l'écran --- */
+.detail-card {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 85vh;
+  background: var(--color-bg-gradient);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  animation: card-pop var(--transition-medium);
+}
+
+@keyframes card-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* --- Bouton fermeture (croix) --- */
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-primary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.close-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg-dark);
+  border-color: var(--color-accent);
+  transform: rotate(90deg);
+}
+
+.close-btn:focus,
+.close-btn:focus-visible {
+  outline: none;
+}
+
+/* --- Contenu : image à gauche, infos à droite --- */
+.details-content {
+  display: flex;
+  flex-direction: row;
+  min-height: 420px;
+}
+
+.details-image-container {
+  flex: 1 1 50%;
+  background: var(--color-surface);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.details-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.details-info {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 36px;
+  box-sizing: border-box;
+}
+
+.details-info h2 {
+  color: var(--color-text-primary);
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+
+.details-category {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 14px;
+}
+
+.details-description {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.details-price {
+  color: var(--color-accent-light);
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+.details-info > p:last-of-type {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 22px;
+}
+
+/* --- Boutons --- */
+.details-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.details-buttons button {
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.details-buttons button:focus,
+.details-buttons button:focus-visible {
+  outline: none;
+}
+
+.details-buttons button:first-of-type {
+  background: transparent;
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+.details-buttons button:first-of-type:hover {
+  background: var(--color-accent-surface);
+  color: var(--color-accent-light);
+  box-shadow: 0 0 10px var(--color-accent-shadow);
+}
+
+.details-buttons button:last-of-type {
+  background: var(--color-accent-gradient);
+  border: none;
+  color: var(--color-bg-dark);
+}
+
+.details-buttons button:last-of-type:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 4px 16px var(--color-accent-shadow);
+  transform: translateY(-1px);
+}
+
+.details-buttons button:last-of-type:active {
+  transform: translateY(0);
+}
+
+/* --- Responsive : empile l'image au-dessus des infos --- */
+@media (max-width: 768px) {
+  .details-overlay {
+    padding: 16px;
+    align-items: flex-end;
+  }
+
+  .detail-card {
+    max-height: 90vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .details-content {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .details-image-container {
+    flex: none;
+    height: 240px;
+  }
+
+  .details-info {
+    padding: 26px 22px 32px;
+  }
+
+  .details-info h2 {
+    font-size: 1.3rem;
+  }
+
+  .details-price {
+    font-size: 1.1rem;
+  }
+
+  .details-buttons {
+    flex-direction: column;
+  }
+
+  .details-buttons button {
+    width: 100%;
+  }
+}

@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import LocalContext from "../context/Localhost";
 function Logout() {
   const navigate = useNavigate();
+  const { localhost } = useContext(LocalContext);
   async function handleLogout() {
     const response = await fetch(
-      "http://localhost/Boutique/src/controllers/user_logout.php",
+      `http://${localhost}/Boutique/src/controllers/user_logout.php`,
       {
         method: "GET",
         headers: {

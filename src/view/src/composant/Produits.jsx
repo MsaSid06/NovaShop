@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProductContext } from "../context/ProductContext.jsx";
 import { CategorieContext } from "../context/categorieContext.jsx";
 import { useContext } from "react";
 import AfficherProduit from "./AfficherProduit.jsx";
 import { PanierContext } from "../context/PanierContext.jsx";
-// import "./AfficherProduit.css";
-// import Panier from "./Panier.jsx";
-// import { useContext } from "react";
+import "./Produits.css";
 
 function Produits() {
   const { AjoutAuPanier } = useContext(PanierContext);
@@ -14,7 +12,11 @@ function Produits() {
   const { products } = useContext(ProductContext);
   const { categories } = useContext(CategorieContext);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [produitAffiche, setProduitAffiche] = useState(products);
+  const [produitAffiche, setProduitAffiche] = useState([]);
+
+  useEffect(() => {
+    setProduitAffiche(products);
+  }, [products]);
 
   function filterByCategory(categoryId) {
     setSelectedCategory(categoryId);
@@ -45,40 +47,46 @@ function Produits() {
   }
 
   return (
-    <>
-      <div className="categorie">
-        <select
-          name="categorie"
-          id="categorie"
-          onChange={(e) => filterByCategory(e.target.value)}
-          value={selectedCategory}
-        >
-          <option value="all">Toutes les catégories</option>
-          {categories.map((categorie) => (
-            <option key={categorie.id_categorie} value={categorie.id_categorie}>
-              {categorie.nom_categorie}
-            </option>
-          ))}
-        </select>
+    <section className="produits-page">
+      <div className="produits-wrapper">
+        <div className="categorie">
+          <select
+            name="categorie"
+            id="categorie"
+            onChange={(e) => filterByCategory(e.target.value)}
+            value={selectedCategory}
+          >
+            <option value="all">Toutes les catégories</option>
+            {categories.map((categorie) => (
+              <option
+                key={categorie.id_categorie}
+                value={categorie.id_categorie}
+              >
+                {categorie.nom_categorie}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <input
+          type="text"
+          placeholder="Rechercher un produit..."
+          onChange={searchProducts}
+        />
+
+        <div className="produits-container">
+          {produitAffiche.map((product) => {
+            return (
+              <AfficherProduit
+                key={product.id_produit}
+                product={product}
+                AjoutAuPanier={AjoutAuPanier}
+              />
+            );
+          })}
+        </div>
       </div>
-      <input
-        type="text"
-        placeholder="Rechercher un produit..."
-        onChange={searchProducts}
-      />
-      <div className="produits-container">
-        {/* {console.log(produitAffiche)} */}
-        {produitAffiche.map((product) => {
-          return (
-            <AfficherProduit
-              key={product.id_produit}
-              product={product}
-              AjoutAuPanier={AjoutAuPanier}
-            />
-          );
-        })}
-      </div>
-    </>
+    </section>
   );
 }
 

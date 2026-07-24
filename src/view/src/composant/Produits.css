@@ -1,0 +1,158 @@
+:root {
+  /* ===========================
+     COULEURS
+  =========================== */
+
+  --color-bg: #f8fafc;
+  --color-white: #ffffff;
+
+  --color-primary: #2563eb;
+  --color-primary-hover: #3b82f6;
+
+  --color-text: #0f172a;
+  --color-text-light: #64748b;
+
+  --color-border: #dbe3ee;
+  --color-focus: rgba(37, 99, 235, 0.15);
+
+  /* ===========================
+     ESPACEMENTS
+  =========================== */
+
+  --section-padding: 45px;
+  --container-width: 1450px;
+
+  /* ===========================
+     RAYONS
+  =========================== */
+
+  --radius-input: 12px;
+
+  /* ===========================
+     TRANSITIONS
+  =========================== */
+
+  --transition-fast: 0.3s ease;
+}
+
+/* ===========================
+   PAGE PRODUITS
+=========================== */
+
+.produits-page {
+  background: var(--color-bg);
+  min-height: 100vh;
+  padding: var(--section-padding) 0 70px;
+}
+
+.produits-wrapper {
+  width: min(var(--container-width), calc(100% - 40px));
+  margin: auto;
+}
+
+/* ===========================
+   FILTRES
+=========================== */
+
+.categorie {
+  margin-bottom: 20px;
+}
+
+.categorie select,
+.produits-wrapper > input {
+  width: 100%;
+  height: 52px;
+  /* padding: 0 18px; */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: var(--color-white);
+  color: var(--color-text);
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: var(--transition-fast);
+}
+
+.categorie select {
+  margin-bottom: 15px;
+}
+
+.categorie select:focus,
+.produits-wrapper > input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus);
+}
+
+.produits-wrapper > input::placeholder {
+  color: var(--color-text-light);
+}
+
+.produits-wrapper > input {
+  margin-bottom: 35px;
+}
+
+/* ===========================
+   CONTENEUR DES CARTES
+=========================== */
+
+.produits-container {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* ===========================
+   TABLETTE
+=========================== */
+
+@media (max-width: 992px) {
+  .produits-page {
+    padding: 35px 0 60px;
+  }
+
+  .produits-wrapper {
+    width: calc(100% - 30px);
+  }
+
+  .produits-container {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 24px;
+  }
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+  .produits-page {
+    padding: 25px 0 50px;
+  }
+
+  .produits-wrapper {
+    width: calc(100% - 20px);
+  }
+
+  .categorie select,
+  .produits-wrapper > input {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .produits-container {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* ===========================
+   GRAND ÉCRAN
+=========================== */
+
+@media (min-width: 1400px) {
+  .produits-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

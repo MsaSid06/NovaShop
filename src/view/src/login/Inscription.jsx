@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./Inscription.css";
+import { useContext } from "react";
+import LocalContext from "../context/Localhost";
 function Inscription() {
+  const { localhost } = useContext(LocalContext);
+
   const navigate = useNavigate();
   async function handleSubmit(event) {
     event.preventDefault();
@@ -15,7 +19,7 @@ function Inscription() {
     };
     console.log(JSON.stringify(data));
     const response = await fetch(
-      "http://localhost/Boutique/src/controllers/api_users.php",
+      `http://${localhost}/Boutique/src/controllers/api_users.php`,
       {
         method: "POST",
         headers: {
@@ -34,7 +38,7 @@ function Inscription() {
   }
   return (
     <>
-      <main className="body-Inscription">
+      <section className="body-Inscription">
         <div className="register-container">
           <p>Créez votre compte</p>
           <h6 className="champn-requis">Tout les champs (*) sont requis</h6>
@@ -68,7 +72,7 @@ function Inscription() {
           </form>
           {/* <p className="erreur"></p> */}
         </div>
-      </main>
+      </section>
     </>
   );
 }
