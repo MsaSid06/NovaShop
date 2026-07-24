@@ -135,7 +135,7 @@ function Dashboard_client() {
         <section className="dashboard-section">
           <h2>Quelques Avis sur nos produits</h2>
 
-          <div id="avis" className="avis-card">
+          <div className="avis-section avis-card">
             <Avis />
           </div>
         </section>
