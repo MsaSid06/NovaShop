@@ -29,7 +29,7 @@ switch ($method) {
         $frais_livraison = (float) $data['frais_livraison'] ?? null;
         $date_livraison = $data['date_livraison'] ?? null;
 
-        echo  insertCommande($numero_commande, $id_client, $date_commande, $addresse_livraison, $statut, $frais_livraison, $date_livraison) ? json_encode(["message" => "Commande ajoutée avec succès"]) : json_encode(["message" => "Erreur, commande non ajoutée"]);
+        echo  insertCommande($numero_commande, $id_client, $date_commande, $addresse_livraison, $statut, $frais_livraison, $date_livraison) ? json_encode(["message" => true]) : json_encode(["message" => false]);
         break;
     case 'PUT':
         require_once "../models/Update.php";

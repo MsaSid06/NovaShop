@@ -100,9 +100,10 @@ function insertStockHistorique(int $id_produit, string $type_mouvement, int $qua
 
 // Table : Commande
 
-function insertCommande(string $numero_commande, int $id_client, DateTime $date_commande, string $adresse_livraison, string $statut, float $frais_livraison, DateTime $date_livraison)
+function insertCommande(string $numero_commande, int $id_client, string $date_commande, string $adresse_livraison, string $statut, float $frais_livraison, string $date_livraison)
 {
     global $pdo;
+
     try {
         $sql = "INSERT INTO Commande (numero_commande, id_client, date_commande, adresse_livraison, statut, frais_livraison, date_livraison)
                 VALUES (:numero_commande, :id_client, :date_commande, :adresse_livraison, :statut, :frais_livraison, :date_livraison)";

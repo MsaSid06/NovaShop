@@ -1,15 +1,3 @@
-/* width: min(1400px, calc(100% - 60px));
-  .produit-card img {
-  width: 100%;
-  height: 280px;
-  object-fit: contain;
-  background: #f8fafc;
-  /* padding: 10px 0; 
-  transition: transform 0.4s ease;
-  border-radius: 10px;
-} */
-/* AfficherProduit.css */
-
 :root {
   --color-bg-dark: #0f172a;
   --color-bg-medium: #1e293b;

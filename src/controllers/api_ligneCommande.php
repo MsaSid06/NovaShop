@@ -24,7 +24,7 @@ switch ($method) {
         $id_produit = (int) ($data['id_produit'] ?? null);
         $quantite = (int) ($data['quantite'] ?? null);
 
-        echo  insertLigneCommande($numero_commande, $id_produit, $quantite) ? json_encode(["message" => "Ligne de commande ajoutée avec succès"]) : json_encode(["message" => "Erreur, ligne de commande non ajoutée"]);
+        echo  insertLigneCommande($numero_commande, $id_produit, $quantite) ? json_encode(["message" => true ]) : json_encode(["message" => false]);
         break;
     case 'PUT':
         require_once "../models/Update.php";

@@ -30,7 +30,7 @@ function Login() {
     // const result = await response.text();
     // console.log(result);
     if (result.user) {
-      alert(result.message);
+      // alert("Connexion reussi !");
       // Mettre à jour le contexte d'authentification
       setUser(result.user);
       switch (result.user.role) {
