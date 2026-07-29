@@ -134,6 +134,21 @@ function updateCommande(string $numero_commande, int $id_client, string $statut,
     }
 }
 
+function updateCommandeStatut(string $numero_commande, string $statut)
+{
+
+    global $pdo;
+    try {
+        $sql = "UPDATE Commande SET statut = :statut WHERE numero_commande = :numero_commande ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':numero_commande', $numero_commande);
+        $stmt->bindParam(':statut', $statut);
+        return $stmt->execute();
+    } catch (Exception $e) {
+        return $e->getCode();
+    }
+}
+
 function updateLigneCommande(string $numero_commande, int $id_produit, int $quantite)
 {
 

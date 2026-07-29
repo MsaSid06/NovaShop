@@ -11,7 +11,8 @@ import { ProductContextProvider } from "./context/ProductContext.jsx";
 import { AvisContextProvider } from "./context/AvisContext.jsx";
 import { PanierContextProvider } from "./context/PanierContext.jsx";
 import { LocalProvider } from "./context/Localhost.jsx";
-
+import { LigneCommandeContextProvider } from "./context/LigneCommandeContext.jsx";
+import { CommandeContextProvider } from "./context/CommandeContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -21,7 +22,11 @@ createRoot(document.getElementById("root")).render(
             <ProductContextProvider>
               <AvisContextProvider>
                 <PanierContextProvider>
-                  <App />
+                  <CommandeContextProvider>
+                    <LigneCommandeContextProvider>
+                      <App />
+                    </LigneCommandeContextProvider>
+                  </CommandeContextProvider>
                 </PanierContextProvider>
               </AvisContextProvider>
             </ProductContextProvider>

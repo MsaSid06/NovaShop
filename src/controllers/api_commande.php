@@ -36,22 +36,24 @@ switch ($method) {
         $data = json_decode(file_get_contents("php://input"), true);
 
         $numero_commande = (string) $data['numero_commande'] ?? null;
-        $id_client = (int) $data['id_client'] ?? null;
+        // $id_client = (int) $data['id_client'] ?? null;
         $statut = $data['statut'] ?? null;
-        $adresse_livraison = $data['adresse_livraison'] ?? null;
-        $frais_livraison = (float) $data['frais_livraison'] ?? null;
-        $date_livraison = $data['date_livraison'] ?? null;
+        // $adresse_livraison = $data['adresse_livraison'] ?? null;
+        // $frais_livraison = (float) $data['frais_livraison'] ?? null;
+        // $date_livraison = $data['date_livraison'] ?? null;
 
-        echo  updateCommande($numero_commande, $id_client, $statut, $adresse_livraison, $frais_livraison, $date_livraison) ? json_encode(["message" => "Commande modifiée avec succès"]) : json_encode(["message" => "Erreur, commande non modifiée"]);
+        // echo  updateCommande($numero_commande, $id_client, $statut, $adresse_livraison, $frais_livraison, $date_livraison) ? json_encode(["message" => "Commande modifiée avec succès"]) : json_encode(["message" => "Erreur, commande non modifiée"]);
+
+        echo  updateCommandeStatut($numero_commande, $statut) ? json_encode(["message" => "Commande modifiée avec succès", "lign"]) : json_encode(["message" => "Erreur, commande non modifiée"]);
         break;
     case 'DELETE':
         require_once "../models/Delete.php";
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $id_client = (int) $data['id_client'] ?? null;
+        // $id_client = (int) $data['id_client'] ?? null;
         $numero_commande = (string) $data['numero_commande'] ?? null;
 
-        echo  deleteCommande($numero_commande, $id_client) ? json_encode(["message" => "Commande supprimée avec succès"]) : json_encode(["message" => "Erreur, commande non supprimée"]);
+        echo  deleteCommande($numero_commande) ? json_encode(["message" => "Commande supprimée avec succès"]) : json_encode(["message" => "Erreur, commande non supprimée"]);
         break;
 
     default:

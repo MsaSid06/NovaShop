@@ -3,28 +3,28 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { PanierContext } from "../context/PanierContext";
 import AuthContext from "../context/Auth";
-
+import LocalContext from "../context/Localhost";
 function Header() {
   const { panier } = useContext(PanierContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const [estConnecter, setEstConnecter] = useState(false);
+  // const [estConnecter, setEstConnecter] = useState(false);
+  const [profile, setProfile] = useState(false);
   const { user } = useContext(AuthContext);
+  const { localhost } = useContext(LocalContext);
 
-  useEffect(
-    () => async () => {
-      async function verif_connection() {
-        const response = await fetch(
-          "http://localhost/Boutique/src/controllers/est_connecter.php",
-        );
-        const resultat = await response.json();
-        setEstConnecter(resultat.connecter);
-      }
-      verif_connection();
-    },
-    [user],
-  );
+  useEffect(() => {
+    async function modifProfile() {
+      // const response = await fetch(
+      //   `http://${localhost}/Boutique/src/controllers/est_connecter.php`,
+      // );
+      // const resultat = await response.json();
+      // // setEstConnecter(resultat.connecter);
+      setProfile(user?.role === "proprietaire");
+    }
+    modifProfile();
+  }, [user, localhost]);
 
   function redirect(lien) {
     navigate(lien);
@@ -43,18 +43,18 @@ function Header() {
       });
     }
   }
-
+  if (profile) {
+    return null;
+  }
   return (
     <header className="header" id="header">
       <script src="https://cdn.tailwindcss.com"></script>
       <div className="header-container">
-        {/* Logo */}
         <div className="header-logo" onClick={() => redirect("/")}>
           <i className="fa-solid fa-shop"></i>
           <span>NovaShop</span>
         </div>
 
-        {}
         <button
           className="burger-btn"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -65,7 +65,6 @@ function Header() {
           ></i>
         </button>
 
-        {/* Navigation */}
         <nav className={`header-nav ${menuOpen ? "open" : ""}`}>
           <ul>
             <li onClick={() => allerVers("header")}>
@@ -86,7 +85,6 @@ function Header() {
           </ul>
         </nav>
 
-        {/* Actions à droite */}
         <div className="header-actions">
           <div className="cart-icon" onClick={() => redirect("/panier")}>
             <i className="fa-solid fa-cart-shopping"></i>
@@ -95,20 +93,8 @@ function Header() {
             )}
           </div>
 
-          {/* {estConnecter && (
-            <div className="user-avatar" title={user.prenom}>
-              {(user.nom[0] + user.prenom[0]).toUpperCase()}
-            </div>
-          )}
-          {!estConnecter && (
-            <div className="user-avatar" title={"utilisateur"}>
-              CL
-            </div>
-          )} */}
-
-          {/* Connexion / Déconnexion dans le menu mobile */}
           <button className="mobile-login">
-            {estConnecter ? (
+            {user?.role ? (
               <>
                 <i className="fa-solid fa-right-from-bracket"></i>
                 <span onClick={() => redirect("/logout")}>Déconnexion</span>

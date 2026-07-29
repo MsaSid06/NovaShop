@@ -76,16 +76,14 @@ function deleteStockHistorique(int $id_stock_historique)
 }
 
 
-function deleteCommande(string $numero_commande, int $id_client)
+function deleteCommande(string $numero_commande)
 {
 
     global $pdo;
     try {
-        $sql = "DELETE FROM Commande WHERE numero_commande = :numero_commande AND id_client = :id_client";
+        $sql = "DELETE  FROM Commande WHERE numero_commande = :numero_commande";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':numero_commande', $numero_commande, PDO::PARAM_STR);
-        $stmt->bindParam(':id_client', $id_client, PDO::PARAM_INT);
-        $stmt->bindParam(':id_produit', $id_produit, PDO::PARAM_INT);
+        $stmt->bindParam(':numero_commande', $numero_commande);
         return $stmt->execute();
     } catch (Exception $e) {
         return $e->getCode();

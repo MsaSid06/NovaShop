@@ -99,7 +99,7 @@ function getCommande()
 {
     global $pdo;
     try {
-        $sql = "SELECT * FROM Commande";
+        $sql = "SELECT C.* , u.nom, u.prenom, u.telephone FROM Commande C join utilisateur u on u.id_utilisateur = C.id_client";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $Commande = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -143,7 +143,7 @@ function getLigneCommande()
 {
     global $pdo;
     try {
-        $sql = "SELECT * FROM ligne_commande";
+        $sql = "SELECT l.* , p.nom_produit  , p.prix FROM ligne_commande  l join produit p on p.id_produit = l.id_produit ";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $ligneCommande = $stmt->fetchAll(PDO::FETCH_ASSOC);

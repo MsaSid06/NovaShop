@@ -41,7 +41,7 @@ function Login() {
           redirectDashboard("/client");
           break;
         case "proprietaire":
-          redirectDashboard("/proprietaire");
+          redirectDashboard("/proprio");
           break;
         default:
           redirectDashboard("/login");
