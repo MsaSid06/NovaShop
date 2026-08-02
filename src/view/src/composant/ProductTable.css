@@ -1,0 +1,286 @@
+.product-search {
+  width: 100%;
+}
+
+.produit-search {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.produit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.categorie-select {
+  flex: 0 0 250px;
+}
+
+.categorie-select select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.produit-wrapper input {
+  flex: 1;
+  height: 42px;
+  padding: 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.produit-wrapper input:focus,
+.categorie-select select:focus {
+  border-color: #2563eb;
+}
+
+/* Bouton création produit */
+
+.create-product-btn {
+  height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.create-product-btn:hover {
+  background: #1d4ed8;
+}
+
+/* TABLE */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.product-table thead {
+  background: #f8fafc;
+}
+
+.product-table th {
+  text-align: left;
+  padding: 15px;
+  font-size: 14px;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.product-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+/* PRODUIT */
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-image {
+  width: 55px;
+  height: 55px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-name {
+  margin: 0;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.product-tag {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+/* CATEGORIE */
+
+.category-badge {
+  background: #f1f5f9;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* PRIX */
+
+.price {
+  font-weight: 600;
+}
+
+/* NOTE */
+
+.rating {
+  color: #f59e0b;
+}
+
+/* STATUT */
+
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.status.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* ACTIONS */
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: none;
+  background: #f1f5f9;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.actions button:hover {
+  background: #e2e8f0;
+}
+
+.actions .delete {
+  color: #dc2626;
+}
+
+.actions .delete:hover {
+  background: #fee2e2;
+}
+.table-container {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+
+  /* hauteur maximale de la box */
+  max-height: calc(100vh - 250px);
+
+  /* scroll vertical quand les produits dépassent */
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+/* garde l'entête du tableau visible pendant le scroll */
+.product-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f8fafc;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+/* ==========================
+   RESPONSIVE TABLETTE
+========================== */
+
+@media (max-width: 900px) {
+  .produit-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .categorie-select {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .produit-wrapper input {
+    min-width: 250px;
+  }
+
+  .create-product-btn {
+    width: 100%;
+  }
+}
+
+/* ==========================
+   RESPONSIVE MOBILE
+========================== */
+
+@media (max-width: 600px) {
+  .produit-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .categorie-select,
+  .produit-wrapper input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .create-product-btn {
+    width: 100%;
+  }
+
+  .table-container {
+    border-radius: 8px;
+  }
+
+  .product-table {
+    min-width: 750px;
+  }
+
+  .product-info {
+    gap: 8px;
+  }
+
+  .product-image {
+    width: 45px;
+    height: 45px;
+  }
+}

@@ -14,7 +14,15 @@ function ListeCommande() {
 
   const [ouvrir, setOuvrir] = useState(false);
   useEffect(() => {
+<<<<<<< HEAD
     setCommandeAffiche(commandes);
+=======
+    async function fetchData() {
+      setCommandeAffiche(commandes);
+    }
+
+    fetchData();
+>>>>>>> master
   }, [commandes]);
 
   async function modifierCommande(num, statut) {
