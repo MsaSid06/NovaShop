@@ -1,0 +1,274 @@
+/* .product-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  z-index: 1000;
+}
+
+
+/* BOX MODALE */
+
+.product-modal {
+  width: 100%;
+  max-width: 650px;
+
+  background: white;
+  border-radius: 15px;
+
+  padding: 25px;
+
+  max-height: 90vh;
+  overflow-y: auto;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* HEADER */
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 15px;
+}
+
+.modal-header h2 {
+  margin: 0;
+
+  font-size: 22px;
+  color: #1e293b;
+}
+
+.close-btn {
+  width: 35px;
+  height: 35px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f5f9;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* FORMULAIRE */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #cbd5e1;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s;
+
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+textarea {
+  resize: vertical;
+
+  min-height: 100px;
+}
+
+/* INPUT IMAGE */
+
+input[type="file"] {
+  padding: 8px;
+
+  background: #f8fafc;
+
+  cursor: pointer;
+}
+
+.image-name {
+  margin: 5px 0 0;
+
+  padding: 10px;
+
+  background: #f1f5f9;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  color: #475569;
+
+  word-break: break-all;
+}
+
+/* DOUBLE COLONNE */
+
+.form-row {
+  display: flex;
+
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* ACTIONS */
+
+.modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.modal-actions button {
+  height: 42px;
+
+  padding: 0 25px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  font-size: 14px;
+}
+
+.cancel {
+  background: #e2e8f0;
+
+  color: #334155;
+}
+
+.cancel:hover {
+  background: #cbd5e1;
+}
+
+.save {
+  background: #2563eb;
+
+  color: white;
+}
+
+.save:hover {
+  background: #1d4ed8;
+}
+
+.product-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ===========================
+   TABLETTE
+=========================== */
+
+@media (max-width: 768px) {
+  .product-modal {
+    max-width: 95%;
+
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+
+    gap: 0;
+  }
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 480px) {
+  .product-overlay {
+    padding: 10px;
+
+    align-items: flex-start;
+  }
+
+  .product-modal {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    max-height: calc(100vh - 40px);
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
+}
