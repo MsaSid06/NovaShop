@@ -20,7 +20,10 @@ function ProductTable() {
   const [produitUpdate, setProduitUpdate] = useState(null);
 
   useEffect(() => {
-    setProduitAffiche(products);
+    async function a() {
+      setProduitAffiche(products);
+    }
+    a();
   }, [products]);
 
   function filterByCategory(categoryId) {
