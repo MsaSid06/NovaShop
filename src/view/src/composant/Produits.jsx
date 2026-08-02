@@ -15,7 +15,10 @@ function Produits() {
   const [produitAffiche, setProduitAffiche] = useState([]);
 
   useEffect(() => {
-    setProduitAffiche(products);
+    async function a() {
+      setProduitAffiche(products);
+    }
+    a();
   }, [products]);
 
   function filterByCategory(categoryId) {

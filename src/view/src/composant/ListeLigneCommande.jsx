@@ -48,10 +48,7 @@ function ListeLigneCommande({ numero, commande, setOuvrir }) {
             </button>
           </div>
         </div>
-<<<<<<< HEAD
-=======
         {/* {console.log(lignecommandes)} */}
->>>>>>> master
         {lignecommandes.map((ligne) => {
           if (numero == ligne.numero_commande) {
             return (
