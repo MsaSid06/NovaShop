@@ -2,11 +2,7 @@ import ListeCommande from "../composant/ListeCommande";
 import Nav from "../includes/Nav.jsx";
 import { useState } from "react";
 import "./proprio.css";
-<<<<<<< HEAD
-
-=======
 import ProductTable from "../composant/ProductTable.jsx";
->>>>>>> master
 function Dashoard_proprietaire() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -20,10 +16,7 @@ function Dashoard_proprietaire() {
 
       <main className="dashboard-main">
         <ListeCommande />
-<<<<<<< HEAD
-=======
         <ProductTable />
->>>>>>> master
       </main>
     </div>
   );
