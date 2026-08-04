@@ -75,20 +75,19 @@ function ProductTable() {
           body: JSON.stringify(data),
         },
       );
-
       const result = await response.json();
-
       alert(
         result.message ? "Produit supprimé avec succès" : "Veuillez réessayer",
       );
     }
   }
-
-  function updateProduit(p) {
+  console.log(window.location.pathname); function updateProduit(p) {
     setProduitUpdate(p);
+    // console.log(p);
     setShowCreate(true);
     setAFaire(true);
   }
+  // console.log(products);
 
   return (
     <>
@@ -141,7 +140,7 @@ function ProductTable() {
               <th>Catégories</th>
               <th>Prix</th>
               <th>Stock</th>
-              <th>Score</th>
+              {/* <th>Score</th> */}
               <th>Statut</th>
               <th>Actions</th>
             </tr>
@@ -158,11 +157,8 @@ function ProductTable() {
                         alt={p.nom_produit}
                       />
                     </div>
-
                     <div>
                       <p className="product-name">{p.nom_produit}</p>
-
-                      <span className="product-tag">Featured</span>
                     </div>
                   </div>
                 </td>
@@ -174,13 +170,6 @@ function ProductTable() {
                 <td className="price">{p.prix}</td>
 
                 <td>{p.stock_actuel}</td>
-
-                <td>
-                  <span className="rating">
-                    <i className="fa-solid fa-star"></i>
-                    4.8
-                  </span>
-                </td>
 
                 <td>
                   <span className="status active">{p.statut}</span>
@@ -209,13 +198,6 @@ function ProductTable() {
           </tbody>
         </table>
 
-        {/* {showCreate && (
-          <CreateProduct
-            product={produitUpdate}
-            action={aFaire}
-            onClose={() => setShowCreate(false)}
-          />
-        )} */}
         {showCreate && (
           <CreateProduct
             product={produitUpdate}

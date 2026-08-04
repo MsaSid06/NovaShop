@@ -8,9 +8,11 @@ function Header() {
   const { panier } = useContext(PanierContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  // console.log(window.location.pathname);
+  const pathnameInterdites = ["/proprio", "/login", "/inscription"];
 
   // const [estConnecter, setEstConnecter] = useState(false);
-  const [profile, setProfile] = useState(false);
+  // const [profile, setProfile] = useState(false);
   const { user } = useContext(AuthContext);
   const { localhost } = useContext(LocalContext);
 
@@ -21,7 +23,7 @@ function Header() {
       // );
       // const resultat = await response.json();
       // // setEstConnecter(resultat.connecter);
-      setProfile(user?.role === "proprietaire");
+      // setProfile(user?.role === "proprietaire");
     }
     modifProfile();
   }, [user, localhost]);
@@ -43,7 +45,7 @@ function Header() {
       });
     }
   }
-  if (profile) {
+  if (pathnameInterdites.includes(window.location.pathname)) {
     return null;
   }
   return (

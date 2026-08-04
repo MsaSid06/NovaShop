@@ -18,7 +18,6 @@ switch ($method) {
     break;
   case 'POST':
     require_once "../models/Insert.php";
-    require_once "../models/Insert.php";
 
     $id_categorie = (int) ($_POST['id_categorie'] ?? 0);
     $nom_produit = $_POST['nom_produit'] ?? '';
@@ -28,11 +27,19 @@ switch ($method) {
     $description = $_POST['description'] ?? '';
     $nom_fichier = $_POST['chemin_fichier'] ?? '';
 
-    if (insertProduit($id_categorie, $nom_produit, $prix, $stock_actuel, $statut, $description)) {
+    $insert = insertProduit($id_categorie, $nom_produit, $prix, $stock_actuel, $statut, $description);
+
+    if ($insert) {
       // Déplacer l'image si elle existe
       if (isset($_FILES['image'])) {
         $destination = $_SERVER['DOCUMENT_ROOT'] . "/Boutique/src/view/public/assets/Produits/" . $nom_fichier;
-        move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $destination)) {
+          insertImageProduit($insert, $nom_fichier, 1);
+        } else {
+          echo json_encode(["message" => false]);
+        }
+      } else {
+        echo json_encode(["message" => false]);
       }
 
       echo json_encode(["message" => true]);
@@ -52,7 +59,7 @@ switch ($method) {
     $statut = $data['statut'] ?? 'actif';
     $description = $data['description'] ?? null;
 
-    echo  updateProduit($id_produit, $id_categorie, $nom_produit, $description, $prix, $stock_actuel, $statut) ? json_encode(["message" => "Produit modifié avec succès"]) : json_encode(["message" => "Erreur, produit non modifié"]);
+    echo  updateProduit($id_produit, $id_categorie, $nom_produit, $description, $prix, $stock_actuel, $statut) ? json_encode(["message" => true]) : json_encode(["message" => false]);
     break;
   case 'DELETE':
     require_once "../models/Delete.php";

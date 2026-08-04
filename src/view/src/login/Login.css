@@ -41,6 +41,19 @@
   --radius-lg: 16px;
   --transition-fast: 0.2s ease;
 }
+.login {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  /* url("/assets/login-bg.jpg"); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 
 .login-container {
   max-width: 420px;
@@ -203,7 +216,6 @@
     align-self: flex-end;
   }
 }
-
 
 .login {
   min-height: 100%;

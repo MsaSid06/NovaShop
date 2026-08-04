@@ -69,6 +69,9 @@ function Inscription() {
             <input type="password" id="mdp" name="mot_de_passe" required />
             <br />
             <button type="submit">S'inscrire</button>
+            <button type="button" onClick={() => navigate("/login")}>
+              Se connecter
+            </button>
           </form>
           {/* <p className="erreur"></p> */}
         </div>

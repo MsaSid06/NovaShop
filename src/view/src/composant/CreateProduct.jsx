@@ -7,6 +7,7 @@ function CreateProduct({ product, onClose, action }) {
   const { categories } = useContext(CategorieContext);
   const { localhost } = useContext(LocalContext);
   const [produit, setProduit] = useState({
+    id_produit: "",
     id_categorie: "",
     nom_produit: "",
     description: "",
@@ -21,6 +22,7 @@ function CreateProduct({ product, onClose, action }) {
     async function a() {
       if (action && product) {
         setProduit({
+          id_produit: product.id_produit,
           chemin_fichier: product.chemin_fichier ?? "",
           id_categorie: product.id_categorie ?? "",
           nom_produit: product.nom_produit ?? "",
@@ -58,57 +60,78 @@ function CreateProduct({ product, onClose, action }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const c_f = produit.chemin_fichier.replace(/\s+/g, "");
-
-    const formData = new FormData();
-
-    formData.append("chemin_fichier", c_f);
-    formData.append("id_produit", produit.id_produit ?? "");
-    formData.append("id_categorie", produit.id_categorie);
-    formData.append("nom_produit", produit.nom_produit);
-    formData.append("prix", produit.prix);
-    formData.append("stock_actuel", produit.stock_actuel);
-    formData.append("statut", produit.statut);
-    formData.append("description", produit.description);
-    if (produit.image) {
-      formData.append("image", produit.image);
-    }
+    // const c_f = produit.chemin_fichier.trim().replace(/\s+/g, "");
 
     if (!action) {
+      const formData = new FormData();
+
+      formData.append("chemin_fichier", produit.chemin_fichier);
+      formData.append("id_produit", produit.id_produit ?? "");
+      formData.append("id_categorie", produit.id_categorie);
+      formData.append("nom_produit", produit.nom_produit);
+      formData.append("prix", produit.prix);
+      formData.append("stock_actuel", produit.stock_actuel);
+      formData.append("statut", produit.statut);
+      formData.append("description", produit.description);
+      if (produit.image) {
+        formData.append("image", produit.image);
+      }
       const response = await fetch(
         `http://${localhost}/Boutique/src/controllers/api_produits.php`,
         {
           method: "POST",
-
           body: formData,
         },
       );
       const result = await response.json();
-      // alert(
-      //   result.message
-      //     ? "Le produit a ete modifier"
-      //     : "Veuillez recommencer, une erreur s'est produite",
-      // );
       alert(
         result.message
-          ? !action
-            ? "Le produit a été ajouté avec succès"
-            : "Le produit a été modifié avec succès"
+          ? "Le produit a été ajouté avec succès"
+          : "Veuillez recommencer, une erreur s'est produite",
+      );
+      if (result.message) onClose(); // fermeture après enregistrement
+    } else {
+      const data = {
+        id_produit: produit.id_produit,
+        id_categorie: produit.id_categorie,
+        nom_produit: produit.nom_produit,
+        prix: produit.prix,
+        stock_actuel: produit.stock_actuel,
+        statut: produit.statut,
+        description: produit.description,
+        chemin_fichier: produit.chemin_fichier,
+      };
+
+      const response = await fetch(
+        `http://${localhost}/Boutique/src/controllers/api_produits.php`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        },
+      );
+      const result = await response.json();
+      // alert(result);
+
+      alert(
+        result.message
+          ? "Le produit a été modifié avec succès"
           : "Veuillez recommencer, une erreur s'est produite",
       );
       if (result.message) onClose(); // fermeture après enregistrement
     }
-    // else {
-    // }
   };
 
   const handleImageChange = (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     const file = e.target.files[0];
     if (!file) return;
 
     const extension = file.name.split(".").pop();
     const nomFichier = `${produit.nom_produit
+      .trim()
       .replace(/\s+/g, "_")
       .toLowerCase()}_${Date.now()}.${extension}`;
 
@@ -139,13 +162,12 @@ function CreateProduct({ product, onClose, action }) {
             accept=".jpg,.jpeg,.png"
             onChange={handleImageChange}
             required={!action}
+            disabled={action}
           />
 
           {produit.chemin_fichier && (
             <>
-              <p className="image-name">
-                Image : {produit.chemin_fichier.replace(/\s+/g, "")}
-              </p>
+              <p className="image-name">Image : {produit.chemin_fichier}</p>
 
               {/* <img
                 src={`/assets/Produits/${produit.chemin_fichier}`}
