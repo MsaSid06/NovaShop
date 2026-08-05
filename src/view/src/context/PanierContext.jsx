@@ -5,25 +5,14 @@ const PanierContext = createContext();
 function PanierContextProvider({ children }) {
   const [panier, setPanier] = useState([]);
   const [quantiteTab, setQuantiteTab] = useState([]);
-  // const [newQTab, setNewQTabTab] = useState([]);
-  // const [quantite, setQuantite] = useState(1);
 
   function AjoutAuPanier(product) {
     const existe = panier.some((p) => p.id_produit == product.id_produit);
-    // ajoutQuantiteTab(product.id_produit, product.prix);
     if (!existe) {
       setPanier((prev) => [...prev, product]);
       ajoutQuantiteTab(product.id_produit, product.prix);
     }
-    // console.log(panier);
   }
-  //map renvoi un nouveau tableau
-  // useEffect(() => {
-  //   console.log(panier);
-
-  //   console.log(quantiteTab);
-  // }, [panier, quantiteTab]);
-
   function plusQuantite(id, stock, prix) {
     setQuantiteTab((prev) =>
       prev.map((q) => {
@@ -59,16 +48,14 @@ function PanierContextProvider({ children }) {
     const existe = quantiteTab.some((q) => q.idProduit == id);
     if (existe) {
       setQuantiteTab((prev) =>
-        prev.map(
-          (q) =>
-            q.idProduit == id
-              ? {
-                  ...q,
-                  quantite: Number(q.quantite) + 1,
-                  total: Number(q.total) * (Number(q.quantite) + 1),
-                }
-              : q,
-          // setNewQTabTab([...newQTab, q]);
+        prev.map((q) =>
+          q.idProduit == id
+            ? {
+                ...q,
+                quantite: Number(q.quantite) + 1,
+                total: Number(q.total) * (Number(q.quantite) + 1),
+              }
+            : q,
         ),
       );
     } else {

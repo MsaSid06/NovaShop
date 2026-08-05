@@ -2,10 +2,15 @@
 import Nav from "../includes/Nav.jsx";
 import { useState } from "react";
 import "./proprio.css";
+// import UserTable from "../composant/UserTable.jsx";
+import AvisTable from "../composant/AvisTable.jsx";
 // import ProductTable from "../composant/ProductTable.jsx";
-import CategorieTable from "../composant/CategorieTable.jsx";
+// import CategorieTable from "../composant/CategorieTable.jsx";
 function Dashoard_proprietaire() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const now = new Date();
+  console.log(now.getDay(), now.getFullYear(), now.getMonth(), now.getDate());
 
   return (
     <div className="dashboard">
@@ -18,7 +23,10 @@ function Dashoard_proprietaire() {
       <main className="dashboard-main">
         {/* <ListeCommande />
         <ProductTable /> */}
-        <CategorieTable />
+        {/* <CategorieTable /> */}
+        {/* <UserTable />
+         */}
+        <AvisTable />
       </main>
     </div>
   );

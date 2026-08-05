@@ -284,3 +284,19 @@
     height: 45px;
   }
 }
+.avatar-table {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 32px;
+  color: white;
+}
+
+.active {
+  background-color: #16a34a;
+}
+.inactive {
+  background-color: #dc2626;
+}

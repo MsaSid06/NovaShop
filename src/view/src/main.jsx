@@ -13,6 +13,7 @@ import { PanierContextProvider } from "./context/PanierContext.jsx";
 import { LocalProvider } from "./context/Localhost.jsx";
 import { LigneCommandeContextProvider } from "./context/LigneCommandeContext.jsx";
 import { CommandeContextProvider } from "./context/CommandeContext.jsx";
+import { UserContextProvider } from "./context/UserContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -24,7 +25,9 @@ createRoot(document.getElementById("root")).render(
                 <PanierContextProvider>
                   <CommandeContextProvider>
                     <LigneCommandeContextProvider>
-                      <App />
+                      <UserContextProvider>
+                        <App />
+                      </UserContextProvider>
                     </LigneCommandeContextProvider>
                   </CommandeContextProvider>
                 </PanierContextProvider>

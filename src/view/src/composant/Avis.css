@@ -54,12 +54,13 @@
 
   justify-content: space-between;
 
+  /* z-index: 1000; */
   transition: var(--avis-transition);
 }
 
 .avis-card:hover {
   transform: translateY(-6px);
-
+  /* z-index: 1000; */
   box-shadow: var(--avis-shadow-hover);
 }
 
@@ -113,28 +114,42 @@
   font-weight: 700;
 }
 
-/* Etoiles */
-
-/* .avis-note {
-  margin: 4px 0 0;
-
-  color: var(--avis-star);
-
-  letter-spacing: 2px;
-
-  font-size: 30px;
-}
-
-.avis-note:hover{
-
-} */
-
-.avis-note {
+.avis-note,
+.avis-note-p {
   color: var(--avis-star);
   letter-spacing: 2px;
   font-size: 18px;
   transition: 0.3s ease;
   cursor: pointer;
+}
+.avis-statut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Statut traité */
+.avis-statut.Traiter {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+/* Statut en attente */
+.avis-statut.Attente {
+  background-color: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fcd34d;
+}
+
+.avis-statut:hover {
+  transform: scale(1.05);
 }
 
 .avis-note:hover {
@@ -172,7 +187,63 @@
 
   margin: 0;
 }
+.avis-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
 
+.avis-button {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avis-button.valider {
+  background: #16a34a;
+}
+
+.avis-button.valider:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.25);
+}
+
+.avis-button.supprimer {
+  background: #dc2626;
+}
+
+.avis-button.supprimer:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(220, 38, 38, 0.25);
+}
+
+.avis-button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .avis-actions {
+    flex-direction: column;
+  }
+
+  .avis-button {
+    width: 100%;
+  }
+}
 /* =========================
    RESPONSIVE
 ========================= */
@@ -190,5 +261,191 @@
 
   .avis-card {
     padding: 20px;
+  }
+}
+/* Conteneur principal des avis */
+.avis-table-container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Section recherche */
+.avis-table-container .produit-search {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.avis-table-container .produit-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Input recherche */
+.avis-table-container .produit-wrapper input {
+  width: 70%;
+  max-width: 700px;
+  min-width: 250px;
+  padding: 12px 18px;
+  font-size: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.avis-table-container .produit-wrapper input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Liste des avis */
+.avis-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Carte avis */
+.avis-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.avis-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Partie utilisateur */
+.avis-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+/* Avatar */
+.avis-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Nom */
+.avis-nom {
+  margin: 0;
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+}
+
+/* Etoiles */
+.avis-note {
+  margin: 5px 0 0;
+  color: #f59e0b;
+  font-size: 14px;
+}
+
+/* Message */
+.avis-message {
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+/* Date */
+.avis-date {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+/* Boutons */
+.avis-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.avis-button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Bouton valider */
+.avis-button.valider {
+  background: #16a34a;
+  color: white;
+}
+
+.avis-button.valider:hover {
+  background: #15803d;
+  transform: scale(1.03);
+}
+
+/* Bouton supprimer */
+.avis-button.supprimer {
+  background: #dc2626;
+  color: white;
+}
+
+.avis-button.supprimer:hover {
+  background: #b91c1c;
+  transform: scale(1.03);
+}
+
+/* Aucun avis */
+.avis-empty {
+  text-align: center;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* Responsive tablette et mobile */
+@media (max-width: 768px) {
+  .avis-table-container {
+    padding: 15px;
+  }
+
+  .avis-table-container .produit-wrapper input {
+    width: 90%;
+  }
+
+  .avis-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Petit écran */
+@media (max-width: 450px) {
+  .avis-actions {
+    flex-direction: column;
+  }
+
+  .avis-button {
+    width: 100%;
   }
 }

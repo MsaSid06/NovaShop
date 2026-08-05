@@ -4,8 +4,10 @@ import "./Avis.css";
 
 function Avis() {
   const { avis } = useContext(AvisContext);
-
-  const avi = avis.slice(0, 3);
+  // console.log(avis);
+  const avi = avis.filter((a) => a.status == "Traiter");
+  // console.log(avi);
+  // const { users } = useContext(UserContext);
 
   return (
     <div className="avis-container">
