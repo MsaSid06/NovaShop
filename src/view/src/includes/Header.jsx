@@ -94,7 +94,7 @@ function Header() {
             {user?.role ? (
               <>
                 <i className="fa-solid fa-right-from-bracket"></i>
-                <span onClick={() => redirect("/logout")}>Déconnexion</span>
+                <span onClick={() => redirect("/")}>Déconnexion</span>
               </>
             ) : (
               <>
