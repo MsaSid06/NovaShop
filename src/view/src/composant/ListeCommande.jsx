@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { CommandeContext } from "../context/CommandeContext";
 import LocalContext from "../context/Localhost";
 import ListeLigneCommande from "./ListeLigneCommande";
-import "./commande.css";
+import "./CSS/commande.css";
 
 function ListeCommande() {
   const texte = "bonjour cher(e) client(e)\nvotre commande Novashop est prete.";

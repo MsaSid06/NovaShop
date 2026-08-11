@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CategorieContext } from "../context/categorieContext.jsx";
 import DetailsCategories from "./DetailsCategories.jsx";
-import "./Categories.css";
+import "./CSS/Categories.css";
 function Categories() {
   const [veutVoir, setVeutVoir] = useState(false);
   const [select, setSelect] = useState(null);

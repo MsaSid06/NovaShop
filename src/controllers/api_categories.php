@@ -13,9 +13,18 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
   case 'GET':
     require_once "../models/Select.php";
+    // $data = json_decode(file_get_contents("php://input"), true);
+    // $action = $data['action'] ?? null;
+    // if ($action === 'getCategorie' || $action === null) {
     $categories = getCategorie();
-    echo  $categories ? json_encode($categories) : json_encode(["message" => "Aucune catégorie trouvée"]);
+    echo  $categories ? json_encode([$categories]) : json_encode(["message" => false]);
     break;
+  // } else {
+
+  //   $categories = getRevenueByCategories();
+  //   echo  $categories ? json_encode([$categories]) : json_encode(["message" => false]);
+  //   break;
+  // }
   case 'POST':
     require_once "../models/Insert.php";
 

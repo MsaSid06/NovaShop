@@ -1,4 +1,4 @@
-import "./AfficherProduit.css";
+import "./CSS/AfficherProduit.css";
 import { useEffect, useState } from "react";
 import "./DetailsProduit";
 import DetailsProduits from "./DetailsProduit";

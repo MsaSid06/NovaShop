@@ -1,6 +1,6 @@
 // import "./AfficherProduit.css";
 
-import "./DetailsCat.css";
+import "./CSS/DetailsCat.css";
 
 function DetailsCategories({ categorie, fermer }) {
   const chemin = "/assets/categories/";

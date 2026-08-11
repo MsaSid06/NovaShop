@@ -4,7 +4,7 @@ import { CategorieContext } from "../context/categorieContext.jsx";
 import { useContext } from "react";
 import AfficherProduit from "./AfficherProduit.jsx";
 import { PanierContext } from "../context/PanierContext.jsx";
-import "./Produits.css";
+import "./CSS/Produits.css";
 
 function Produits() {
   const { AjoutAuPanier } = useContext(PanierContext);

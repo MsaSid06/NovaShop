@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Apropos.css";
+import "./CSS/Apropos.css";
 import { useNavigate } from "react-router-dom";
 
 const NUMERO_WHATSAPP = "221785823683";

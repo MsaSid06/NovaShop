@@ -1,6 +1,6 @@
 import { LigneCommandeContext } from "../context/LigneCommandeContext.jsx";
 import { useContext } from "react";
-import "./commande.css";
+import "./CSS/commande.css";
 
 function ListeLigneCommande({ numero, commande, setOuvrir }) {
   const { lignecommandes } = useContext(LigneCommandeContext);

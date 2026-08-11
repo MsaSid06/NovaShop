@@ -1,4 +1,4 @@
-import "./ProductTable.css";
+import "./CSS/ProductTable.css";
 import { useState, useEffect, useContext } from "react";
 // import { AuthContext } from "../context/Auth.jsx";
 import LocalContext from "../context/Localhost";

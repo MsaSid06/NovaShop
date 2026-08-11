@@ -1,4 +1,4 @@
-import "./ProductTable.css";
+import "./CSS/ProductTable.css";
 import { useState, useEffect, useContext } from "react";
 // import { ProductContext } from "../context/ProductContext.jsx";
 import { CategorieContext } from "../context/categorieContext.jsx";

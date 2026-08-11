@@ -1,4 +1,4 @@
-import "./DetailUser.css";
+import "./CSS/DetailUser.css";
 
 function DetailUser({ user, onClose }) {
   const active = Number(user.nombre_commandes) > 0 ? "Active" : "Inactive";

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AvisContext } from "../context/AvisContext.jsx";
-import "./Avis.css";
+import "./CSS/Avis.css";
 
 function Avis() {
   const { avis } = useContext(AvisContext);

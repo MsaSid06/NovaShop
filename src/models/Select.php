@@ -139,7 +139,12 @@ function getLigneCommande()
 {
   global $pdo;
   try {
-    $sql = "SELECT l.* , p.nom_produit  , p.prix FROM ligne_commande  l join produit p on p.id_produit = l.id_produit ";
+    $sql = "SELECT l.* , c.statut , c.date_commande ,p.nom_produit  , p.prix FROM ligne_commande  l
+    join produit p
+    on p.id_produit = l.id_produit
+    join commande c
+    on c.numero_commande = l.numero_commande
+     ";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $ligneCommande = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -163,4 +168,33 @@ function getAvis()
   }
 }
 
+function getRevenueByCategories()
+{
+  global $pdo;
+
+  try {
+    $sql = "SELECT
+                    c.nom_categorie,
+                    c.id_categorie,
+                    SUM(l.quantite * p.prix) AS total_revenueCat
+                FROM ligne_commande l
+                JOIN commande cmd
+                    ON cmd.numero_commande = l.numero_commande
+                    AND cmd.statut = 'Livrer'
+                JOIN produit p
+                    ON l.id_produit = p.id_produit
+                JOIN categorie c
+                    ON p.id_categorie = c.id_categorie
+                GROUP BY c.id_categorie, c.nom_categorie";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $revenues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $revenues;
+  } catch (Exception $e) {
+    return $e->getCode();
+  }
+}
 // http://localhost/BOUTIQUE/config/database.php

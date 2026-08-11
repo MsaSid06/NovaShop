@@ -1,6 +1,6 @@
-import "./AfficherProduit.css";
+import "./CSS/AfficherProduit.css";
 
-import "./Details.css";
+import "./CSS/Details.css";
 
 function DetailsProduits({ product, AjoutAuPanier, fermer }) {
   const chemin = "/assets/Produits/";

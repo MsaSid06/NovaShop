@@ -5,8 +5,8 @@ const LocalContext = createContext();
 export const LocalProvider = ({ children }) => {
   // const localhost = " 192.168.1.207";
   // const localhost = "192.168.56.1";
-  // const localhost = "192.168.1.10";
-  const localhost = "192.168.1.11";
+  const localhost = "192.168.1.10";
+  // const localhost = "192.168.1.12";
   // const localhost = "192.168.1.10";
   // const localhost = "192.168.1.129";
   // const localhost = "localhost";

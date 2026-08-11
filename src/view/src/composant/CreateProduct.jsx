@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import "./CreateProduct.css";
+import "./CSS/CreateProduct.css";
 import { CategorieContext } from "../context/categorieContext";
 import LocalContext from "../context/Localhost";
 

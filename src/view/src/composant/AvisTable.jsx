@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { AvisContext } from "../context/AvisContext.jsx";
 import LocalContext from "../context/Localhost";
-import "./Avis.css";
+import "./CSS/Avis.css";
 
 function AvisTable() {
   const { avis } = useContext(AvisContext);

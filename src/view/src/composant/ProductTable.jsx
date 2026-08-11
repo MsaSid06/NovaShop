@@ -1,4 +1,4 @@
-import "./ProductTable.css";
+import "./CSS/ProductTable.css";
 import { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../context/ProductContext.jsx";
 import { CategorieContext } from "../context/categorieContext.jsx";
@@ -81,7 +81,8 @@ function ProductTable() {
       );
     }
   }
-  console.log(window.location.pathname); function updateProduit(p) {
+  console.log(window.location.pathname);
+  function updateProduit(p) {
     setProduitUpdate(p);
     // console.log(p);
     setShowCreate(true);
