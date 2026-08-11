@@ -2,7 +2,7 @@ import "./Footer.css";
 import { useNavigate } from "react-router-dom";
 
 function Footer() {
-  const pathnameInterdites = ["/proprio", "/login", "/inscription"];
+  const pathnameInterdites = ["/proprio", "/login", "/inscription", "/logout"];
 
   const navigate = useNavigate();
   function redirect(lien) {

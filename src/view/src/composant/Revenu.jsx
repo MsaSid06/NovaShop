@@ -54,7 +54,7 @@ export default function Revenu() {
     commandesParMois[mois]++;
   });
 
-  console.log(CAcommandesParMois);
+  // console.log(CAcommandesParMois);
 
   // console.log(commandes, CommandeCurrentYears);
 

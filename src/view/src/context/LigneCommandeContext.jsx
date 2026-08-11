@@ -10,6 +10,9 @@ function LigneCommandeContextProvider({ children }) {
       try {
         const response = await fetch(
           `http://${localhost}/Boutique/src/controllers/api_lignecommande.php`,
+          {
+            credentials: "include",
+          },
         );
         const data = await response.json();
         setLigneCommandes(data);

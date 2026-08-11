@@ -1,4 +1,3 @@
-
 .stats-page {
   display: flex;
   flex-direction: column;
@@ -31,8 +30,6 @@
   position: relative;
   overflow: hidden;
 }
-
-
 
 .stat-card:hover {
   transform: translateY(-4px);
@@ -147,31 +144,76 @@
     grid-template-columns: 1fr;
   }
 }
-
-/* Mobile */
+/* ===== Mobile ===== */
 @media (max-width: 640px) {
-  .dashboard {
-    padding: 16px;
+  .stats-page {
+    padding: 12px;
+    gap: 16px;
   }
 
+  /* 2 cartes par ligne */
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-bottom: 8px;
   }
 
-  .chart-card,
-  .bottom-card {
-    padding: 18px;
+  .stat-card {
+    padding: 16px;
+    border-radius: 14px;
+    gap: 8px;
+    min-width: 0;
   }
 
-  .chart-card canvas {
-    height: 300px !important;
+  .stat-card i {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    border-radius: 10px;
   }
 
-  .bottom-card canvas {
-    height: 250px !important;
+  .stat-title {
+    font-size: 11px;
+    line-height: 1.3;
   }
 
   .stat-card h2 {
-    font-size: 24px;
+    font-size: 21px;
+    margin-top: 4px;
+    line-height: 1.2;
+  }
+
+  /* Graphiques */
+  .chart-card,
+  .bottom-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .card-header {
+    margin-bottom: 14px;
+  }
+
+  .card-header h3 {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .card-header p {
+    font-size: 12px;
+  }
+
+  .chart-card canvas {
+    height: 260px !important;
+  }
+
+  .bottom-card canvas {
+    height: 230px !important;
+  }
+
+  /* Les deux graphiques l'un sous l'autre */
+  .bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }

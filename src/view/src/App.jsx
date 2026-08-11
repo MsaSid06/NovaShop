@@ -14,7 +14,6 @@ import DetailsProduits from "./composant/DetailsProduit.jsx";
 import "./App.css";
 import Apropos from "./composant/Apropos.jsx";
 
-
 import Dashboard_proprietaire from "./view/Dashboard_proprietaire.jsx";
 // import { AuthProvider } from "./context/Auth.jsx";
 // import { AuthContext } from "./context/AuthContext.jsx";
@@ -31,6 +30,8 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Dashboard_client />} />
+            {/* <Route path="/logout" element={<Dashboard_client />} /> */}
+            <Route path="/logout" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/inscription" element={<Inscription />} />

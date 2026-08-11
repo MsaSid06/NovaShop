@@ -69,6 +69,7 @@ function ProductTable() {
         `http://${localhost}/Boutique/src/controllers/api_produits.php`,
         {
           method: "DELETE",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -81,7 +82,7 @@ function ProductTable() {
       );
     }
   }
-  console.log(window.location.pathname);
+  // console.log(window.location.pathname);
   function updateProduit(p) {
     setProduitUpdate(p);
     // console.log(p);

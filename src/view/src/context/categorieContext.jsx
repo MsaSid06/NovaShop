@@ -11,6 +11,9 @@ function CategorieContextProvider({ children }) {
       try {
         const response = await fetch(
           `http://${localhost}/Boutique/src/controllers/api_categories.php`,
+          {
+            credentials: "include",
+          },
         );
         const data = await response.json();
         setCategories(data);

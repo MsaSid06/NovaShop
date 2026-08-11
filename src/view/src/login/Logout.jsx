@@ -23,7 +23,7 @@ function Logout() {
     }
   }
   function redirectLogin() {
-    navigate("/login");
+    navigate("/");
   }
   return (
     <div>

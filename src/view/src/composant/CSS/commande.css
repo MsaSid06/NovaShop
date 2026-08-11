@@ -1,20 +1,26 @@
 /* ============================================================
-   COMMANDE.CSS — Dashboard e-commerce style Shopify
+   COMMANDE.CSS — Style aligné sur product-search
    NovaShop — CSS pur (aucune logique React modifiée)
    ============================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-/* ---------- Variables globales ---------- */
+/* ---------- Variables globales (même famille que product-search) ---------- */
 :root {
   --blue: #2563eb;
-  --green: #22c55e;
-  --red: #ef4444;
-  --orange: #f59e0b;
-  --bg: #f5f7fb;
-  --text: #1f2937;
-  --text-secondary: #6b7280;
-  --border: #e5e7eb;
+  --blue-dark: #1d4ed8;
+  --slate-900: #1e293b;
+  --slate-700: #475569;
+  --slate-500: #64748b;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  --green: #16a34a;
+  --green-bg: #dcfce7;
+  --red: #dc2626;
+  --red-bg: #fee2e2;
+  --orange: #d97706;
+  --orange-bg: #fef3c7;
   --white: #ffffff;
 }
 
@@ -24,8 +30,14 @@
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
+  background: var(--slate-50);
+  color: var(--slate-900);
+}
+
+.liste-commande {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 /* ============================================================
@@ -34,10 +46,8 @@ body {
 .stat {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  margin: 20px 0;
-  margin-left: 10px;
-  margin-right: 10px;
+  gap: 16px;
+  margin: 20px 10px;
 }
 
 .stat p {
@@ -45,43 +55,32 @@ body {
   flex: 1;
   min-width: 220px;
   background: var(--white);
-  border-radius: 16px;
-  padding: 20px 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border-left: 4px solid var(--blue);
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid var(--slate-200);
   font-weight: 600;
-  font-size: 15px;
-  transition: transform 0.25s ease;
+  font-size: 14px;
+  color: var(--slate-700);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  /* color: white; */
 }
-
 .stat p:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
 }
-
+/*
 #cdm-valider {
-  border-left-color: var(--green);
-}
-#cdm-attente {
-  border-left-color: var(--orange);
-}
-#cdm-annuler {
-  border-left-color: var(--red);
-}
-#cdm-total {
-  border-left-color: var(--blue);
-}
-
-/* #cdm-valider:hover {
   background-color: var(--green);
 }
-#cdm-attente:hover {
+#cdm-attente {
   background-color: var(--orange);
 }
-
-#cdm-annuler:hover {
+#cdm-annuler {
   background-color: var(--red);
 }
-#cdm-total:hover {
+#cdm-total {
   background-color: var(--blue);
 } */
 
@@ -90,24 +89,21 @@ body {
    ============================================================ */
 .filtre {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 15px;
-  margin: 25px 0;
-
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 0 10px 20px;
 }
 
 #text-filtre,
 #select-statut {
-  height: 50px;
-  border-radius: 15px;
-  padding-left: 20px;
+  height: 42px;
+  border-radius: 8px;
+  padding: 0 15px;
   border: 1px solid #ddd;
   font-size: 14px;
   outline: none;
   background: var(--white);
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 #text-filtre {
@@ -116,26 +112,26 @@ body {
 }
 
 #select-statut {
-  min-width: 220px;
+  flex: 0 0 250px;
   cursor: pointer;
 }
 
 #text-filtre:focus,
 #select-statut:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 /* ============================================================
-   3. GRILLE DE COMMANDES (.containers-commands)
+   3. LISTE DE COMMANDES (.containers-commands)
    ============================================================ */
 .containers-commands {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin: 20px 0;
-  margin-left: 10px;
-  margin-right: 10px;
+  gap: 12px;
+  margin: 0 10px 20px;
+  padding-right: 8px;
 }
 
 /* ============================================================
@@ -143,39 +139,35 @@ body {
    ============================================================ */
 .command-cards {
   background: var(--white);
-  border-radius: 18px;
-  padding: 20px 25px;
-  border: 1px solid var(--border);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--slate-200);
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
   flex-wrap: nowrap;
   width: 100%;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  animation: fadeIn 0.4s ease;
+  transition: background 0.2s ease;
+  animation: fadeIn 0.3s ease;
 }
 
 .command-cards:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  background: var(--slate-50);
 }
 
-/* ---------- Avatar ---------- */
+/* ---------- Avatar (même logique que .avatar-table) ---------- */
 .avatar {
-  width: 60px;
-  height: 60px;
-  min-width: 60px;
-  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 8px;
   background: var(--blue);
   color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 12px;
 }
 
 /* ---------- Infos commande ---------- */
@@ -184,87 +176,79 @@ body {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 #num-cmd {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-900);
   margin: 0;
-  min-width: 110px;
+  min-width: 60px;
 }
 
 #profile {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--slate-900);
   margin: 0;
-  min-width: 160px;
+  min-width: 130px;
 }
 
 #adresse-livraison,
 #date-livraison {
-  color: var(--text-secondary);
-  font-size: 14px;
+  color: var(--slate-500);
+  font-size: 12px;
   margin: 0;
-  min-width: 140px;
+  min-width: 0;
 }
 
-/* ---------- Badge statut ---------- */
-/* NOTE IMPORTANTE : CSS ne peut pas cibler un élément selon son
-   contenu texte ("Livrer", "attente", "Annuler"). Il faut ajouter
-   l'attribut data-statut={cmd.statut} sur les éléments #statut
-   et .statut (voir explication dans le message). */
+/* ---------- Badge statut (même style que .status) ---------- */
 #statut,
 .statut {
   display: inline-block;
-  padding: 6px 14px;
+  padding: 3px 10px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
-  margin: 6px 0;
+  margin: 0;
 }
 
 [data-statut="Livrer"] {
-  background: #e7f8ef;
-  color: #14a44d;
+  background: var(--green-bg);
+  color: var(--green);
 }
 [data-statut="attente"] {
-  background: #fff3cd;
-  color: #ff9800;
+  background: var(--orange-bg);
+  color: var(--orange);
 }
 [data-statut="Annuler"] {
-  background: #fdeaea;
-  color: #dc3545;
+  background: var(--red-bg);
+  color: var(--red);
 }
 
 /* ============================================================
-   5. BOUTONS D'ACTION (.cmd-action)
+   5. BOUTONS D'ACTION (.cmd-action) — même logique que .actions
    ============================================================ */
 .cmd-action {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: 10px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
 .cmd-action button {
-  height: 45px;
-  padding: 0 18px;
+  height: 32px;
+  padding: 0 12px;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
   white-space: nowrap;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.cmd-action button:hover {
-  transform: scale(1.03);
+  transition: background 0.2s;
 }
 
 #watsapp {
@@ -276,53 +260,62 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
-  /* width: 100px; */
   height: 100%;
   color: var(--white);
   text-decoration: none;
   font-weight: 600;
+  padding: 0 14px;
 }
 
 #valider {
-  background: var(--blue);
-  color: var(--white);
+  background: var(--green-bg);
+  color: var(--green);
 }
+#valider:hover {
+  background: #bbf7d0;
+}
+
 #annuler {
-  background: var(--red);
-  color: var(--white);
+  background: var(--red-bg);
+  color: var(--red);
 }
+#annuler:hover {
+  background: #fecaca;
+}
+
 #supprimer {
-  background: #374151;
-  color: var(--white);
+  background: var(--slate-100);
+  color: var(--slate-700);
 }
+#supprimer:hover {
+  background: var(--slate-200);
+}
+
 #detail {
   background: var(--white);
-  color: var(--text);
-  border: 1px solid var(--border);
+  color: var(--slate-700);
+  border: 1px solid var(--slate-200);
 }
 #detail:hover {
-  background: #f9fafb;
+  background: var(--slate-50);
 }
 
 /* ============================================================
    6. MODAL DE DÉTAILS (.details > .containers-commands)
    ============================================================ */
-/* .details est un simple wrapper : il ne contient un enfant que
-   lorsque la modal est ouverte (ouvrir === true). On stylise donc
-   .containers-commands UNIQUEMENT quand il est descendant de
-   .details, pour ne jamais bloquer l'écran quand la modal est fermée. */
 .details .containers-commands {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(15, 23, 42, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   z-index: 1000;
-  animation: fadeIn 0.3s ease;
+  margin: 0;
+  animation: fadeIn 0.25s ease;
 }
 
 .command-details-cards {
@@ -331,10 +324,10 @@ body {
   max-height: 90vh;
   overflow-y: auto;
   background: var(--white);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.35s ease;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.3s ease;
 }
 
 /* ---------- En-tête modal ---------- */
@@ -351,7 +344,7 @@ body {
 }
 
 .info-static #num-cmd {
-  font-size: 22px;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -359,25 +352,25 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border: none;
-  border-radius: 50%;
-  background: #f3f4f6;
-  color: var(--text-secondary);
-  font-size: 16px;
+  border-radius: 8px;
+  background: var(--slate-100);
+  color: var(--slate-500);
+  font-size: 15px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .fermer:hover {
-  background: #e5e7eb;
-  color: var(--text);
+  background: var(--slate-200);
+  color: var(--slate-900);
 }
 
 .info-static hr {
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--slate-200);
   margin: 15px 0;
 }
 
@@ -390,7 +383,7 @@ body {
 }
 
 .info-client #profile {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0;
 }
@@ -399,7 +392,7 @@ body {
   display: block;
   font-size: 13px;
   font-weight: 400;
-  color: var(--text-secondary);
+  color: var(--slate-500);
   margin-top: 4px;
 }
 
@@ -408,7 +401,6 @@ body {
   color: var(--blue);
 }
 
-/* Bouton WhatsApp géant dans la modal */
 .command-details-cards .cmd-action {
   flex-direction: row;
   min-width: 0;
@@ -416,33 +408,33 @@ body {
 }
 
 .command-details-cards #watsapp {
-  height: 55px;
-  border-radius: 14px;
+  height: 48px;
+  border-radius: 8px;
   width: 100%;
 }
 
 /* ---------- Liste des produits ---------- */
 .ligne-produit {
-  background: #f8f9fb;
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 12px;
+  background: var(--slate-50);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  border-radius: 12px;
-  background: #e5e7eb;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 8px;
+  background: var(--slate-100);
   color: var(--blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   margin-right: 15px;
 }
 
@@ -456,20 +448,20 @@ body {
 
 .produit {
   font-weight: 600;
-  color: var(--text);
+  color: var(--slate-900);
   margin: 0;
   width: 100%;
 }
 
 .quantite-produit {
-  color: var(--text-secondary);
+  color: var(--slate-500);
   font-size: 13px;
   margin: 0;
 }
 
 .prix-total-produit {
   margin-left: auto;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--blue);
 }
@@ -479,30 +471,30 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 18px;
   margin-top: 10px;
-  border-top: 2px solid var(--border);
+  border-top: 1px solid var(--slate-200);
 }
 
 .prix-total .prix {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--slate-500);
   margin: 0;
 }
 
 .prix-total .total {
-  font-size: 34px;
-  font-weight: bold;
-  color: #2563eb;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue);
   margin: 0;
 }
 
 /* ---------- Adresse de livraison (modal) ---------- */
 .livraison {
-  background: #f8f9fb;
-  border-radius: 14px;
-  padding: 18px;
+  background: var(--slate-50);
+  border-radius: 10px;
+  padding: 15px;
   margin-top: 15px;
 }
 
@@ -511,7 +503,7 @@ body {
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--slate-900);
   margin: 0 0 8px;
 }
 
@@ -520,7 +512,7 @@ body {
 }
 
 .livraison .adresse {
-  color: var(--text-secondary);
+  color: var(--slate-500);
   margin: 0;
 }
 
@@ -539,7 +531,7 @@ body {
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -551,10 +543,6 @@ body {
    8. RESPONSIVE < 900px
    ============================================================ */
 @media (max-width: 900px) {
-  .containers-commands {
-    grid-template-columns: 1fr;
-  }
-
   .command-cards {
     flex-direction: column;
     align-items: flex-start;
@@ -578,7 +566,7 @@ body {
   }
 
   .stat {
-    flex-direction: column;
+    display: none;
   }
 
   .stat p {
@@ -593,22 +581,13 @@ body {
   .command-details-cards .cmd-action {
     flex-direction: column;
   }
-}
-.liste-commande {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 
-.containers-commands {
-  flex: 1;
-  overflow-y: auto;
+  .filtre {
+    flex-wrap: wrap;
+  }
 
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  margin: 20px 10px;
-
-  padding-right: 8px;
+  #select-statut {
+    flex: 1;
+    min-width: 220px;
+  }
 }

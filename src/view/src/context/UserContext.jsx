@@ -10,6 +10,9 @@ function UserContextProvider({ children }) {
       try {
         const response = await fetch(
           `http://${localhost}/Boutique/src/controllers/api_users.php`,
+          {
+            credentials: "include",
+          },
         );
         const data = await response.json();
         setUsers(data);

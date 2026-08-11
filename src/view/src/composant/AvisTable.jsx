@@ -39,6 +39,7 @@ function AvisTable() {
           `http://${localhost}/Boutique/src/controllers/api_avis.php`,
           {
             method: "PUT",
+            credentials: "include",
             headers: {
               "Content-Type": "application/json",
             },
@@ -65,6 +66,7 @@ function AvisTable() {
           `http://${localhost}/Boutique/src/controllers/api_avis.php`,
           {
             method: "DELETE",
+            credentials: "include",
             headers: {
               "Content-Type": "application/json",
             },

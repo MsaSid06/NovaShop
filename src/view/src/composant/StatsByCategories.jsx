@@ -16,6 +16,7 @@ export default function StatsByCategories() {
           `http://${localhost}/Boutique/src/controllers/api_revenusCat.php`,
           {
             method: "GET",
+            credentials: "include",
           },
         );
         const retour = await response.json();

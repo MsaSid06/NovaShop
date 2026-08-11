@@ -4,31 +4,25 @@ import { useState, useEffect, useContext } from "react";
 import { PanierContext } from "../context/PanierContext";
 import AuthContext from "../context/Auth";
 import LocalContext from "../context/Localhost";
+
 function Header() {
   const { panier } = useContext(PanierContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  // console.log(window.location.pathname);
-  const pathnameInterdites = ["/proprio", "/login", "/inscription"];
-
-  // const [estConnecter, setEstConnecter] = useState(false);
-  // const [profile, setProfile] = useState(false);
+  const pathnameInterdites = ["/proprio", "/login", "/inscription", "/logout"];
   const { user } = useContext(AuthContext);
   const { localhost } = useContext(LocalContext);
 
   useEffect(() => {
-    async function modifProfile() {
-      // const response = await fetch(
-      //   `http://${localhost}/Boutique/src/controllers/est_connecter.php`,
-      // );
-      // const resultat = await response.json();
-      // // setEstConnecter(resultat.connecter);
-      // setProfile(user?.role === "proprietaire");
-    }
+    async function modifProfile() {}
     modifProfile();
   }, [user, localhost]);
 
   function redirect(lien) {
+    if (lien == "/logout") {
+      alert("Vous etes deconnectez");
+      // user = [];
+    }
     navigate(lien);
     setMenuOpen(false);
   }
@@ -45,6 +39,7 @@ function Header() {
       });
     }
   }
+  // utilisateur = user;
   if (pathnameInterdites.includes(window.location.pathname)) {
     return null;
   }

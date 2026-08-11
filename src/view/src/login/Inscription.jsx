@@ -22,6 +22,7 @@ function Inscription() {
       `http://${localhost}/Boutique/src/controllers/api_users.php`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

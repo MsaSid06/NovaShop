@@ -20,6 +20,7 @@ function Login() {
       `http://${localhost}/Boutique/src/controllers/user_login.php`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

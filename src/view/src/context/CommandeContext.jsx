@@ -10,6 +10,9 @@ function CommandeContextProvider({ children }) {
       try {
         const response = await fetch(
           `http://${localhost}/Boutique/src/controllers/api_commande.php`,
+          {
+            credentials: "include",
+          },
         );
         const data = await response.json();
         setCommandes(data);

@@ -10,6 +10,9 @@ function ProductContextProvider({ children }) {
       try {
         const response = await fetch(
           `http://${localhost}/Boutique/src/controllers/api_produits.php`,
+          {
+            credentials: "include",
+          },
         );
         const data = await response.json();
         setProducts(data);

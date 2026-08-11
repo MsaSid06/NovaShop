@@ -80,6 +80,7 @@ function CreateProduct({ product, onClose, action }) {
         `http://${localhost}/Boutique/src/controllers/api_produits.php`,
         {
           method: "POST",
+          credentials: "include",
           body: formData,
         },
       );
@@ -106,6 +107,7 @@ function CreateProduct({ product, onClose, action }) {
         `http://${localhost}/Boutique/src/controllers/api_produits.php`,
         {
           method: "PUT",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

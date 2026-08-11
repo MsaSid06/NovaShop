@@ -5,25 +5,8 @@ import LocalContext from "../context/Localhost";
 // import CreateProduct from "./CreateProduct.jsx";
 import { UserContext } from "../context/UserContext.jsx";
 import DetailUser from "./DetailUser.jsx";
-// -- -- Table : Utilisateur
-// -- CREATE TABLE Utilisateur (
-// --     id_utilisateur   INT AUTO_INCREMENT,
-// --     nom              VARCHAR(100)        NOT NULL,
-// --     prenom           VARCHAR(100)        NOT NULL,
-// --     email            VARCHAR(150)        NOT NULL UNIQUE CHECK (email LIKE '%@%.%'),
-// --     mot_de_passe     VARCHAR(255)        NOT NULL,
-// --     role             ENUM('proprietaire', 'client', 'admin') NOT NULL DEFAULT 'client',
-// --     telephone        VARCHAR(20)         NOT NULL,
-// --     date_creation    DATETIME            NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-// --     CONSTRAINT pk_utilisateur PRIMARY KEY (id_utilisateur)
-
-// -- ) ENGINE=InnoDB;
 
 function UserTable() {
-  // const chemin = "/assets/Produits/";
-
-  // const { user } = useContext(AuthContext); ggerer les droits d'acces pour les utilisateurs
   const { localhost } = useContext(LocalContext);
   const { users } = useContext(UserContext);
   const [userAffiche, setUserAffiche] = useState([]);
@@ -32,7 +15,10 @@ function UserTable() {
 
   useEffect(() => {
     async function a() {
-      setUserAffiche(users);
+      const usersTries = await [...users].sort(
+        (a, b) => Number(b.total_depense) - Number(a.total_depense),
+      );
+      setUserAffiche(usersTries);
     }
     a();
   }, [users]);
@@ -59,6 +45,7 @@ function UserTable() {
         `http://${localhost}/Boutique/src/controllers/api_users.php`,
         {
           method: "DELETE",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

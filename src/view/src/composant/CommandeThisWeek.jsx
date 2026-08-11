@@ -44,28 +44,16 @@ function CommandeThisWeek() {
       sunday: formatDate(sunday),
     };
   }
-  // const date = new Date();
-  // console.log("date ", date.getDate("2026-01-15 10:00:00"));
+
   const { monday, sunday } = getCurrentWeek();
 
-  // console.log(new Date(commandes[0].date_commande)); // "2026-08-10 00:00:00"
-  // console.log(sunday); // "2026-08-16 23:59:59"
-  // const { monday, sunday } = getCurrentWeek();
-  // ("2026-01-15 10:00:00");
 
-  // Mon Aug 10 2026 00:00:00 GMT+0000 (temps universel coordonné) getYear(), getMonth(), getDate()
-  // Sun Aug 16 2026 23:59:59 GMT+0000 (temps universel coordonné)
   const ThisWeek = commandes.filter((commande) => {
     const date_commande = formatDate(new Date(commande.date_commande));
     return date_commande >= monday && date_commande <= sunday;
   });
 
-  // console.log("Commandes de la semaine :", monday, sunday);
-  // console.log(
-  //   "Commandes de la semaine :",
-  //   new Date(ThisWeek[0]?.date_commande).getDay(),
-  // );
-  // console.log("Commandes de la semaine :", commandes);
+
   const commandesByDay = [0, 0, 0, 0, 0, 0, 0];
 
   ThisWeek.forEach((commande) => {
@@ -93,10 +81,6 @@ function CommandeThisWeek() {
     responsive: true,
     maintainAspectRatio: false,
   };
-
-  // const option = {
-  //   indexAxis: "y",
-  // };
 
   return (
     <div>

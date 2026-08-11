@@ -30,6 +30,7 @@ function ListeCommande() {
       `http://${localhost}/Boutique/src/controllers/api_commande.php`,
       {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,6 +48,7 @@ function ListeCommande() {
       `http://${localhost}/Boutique/src/controllers/api_commande.php`,
       {
         method: "DELETE",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

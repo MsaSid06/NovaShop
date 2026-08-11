@@ -16,69 +16,108 @@
   flex-direction: column;
   overflow: hidden;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.04);
-  z-index: 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;
+  z-index: 9999999999999999999999999999999999;
 }
 
 /* ================= LOGO ================= */
+/* ============================= */
+/*        NOVASHOP HEADER         */
+/* ============================= */
 
-.logo {
+.nova {
+  width: 100%;
+  min-height: 92px;
+
   display: flex;
   align-items: center;
+
   gap: 12px;
-  padding: 22px 18px;
+
+  padding: 18px;
+
   border-bottom: 1px solid #e5e7eb;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  background: #ffffff;
 }
 
-.logo-icon {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  border-radius: 14px;
-  background: #2563eb;
-  color: #fff;
+/* Icône du logo */
+.nova-icon {
+  width: 50px;
+  height: 50px;
+
+  min-width: 50px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+
+  border-radius: 14px;
+
+  background: #2962ff;
+
+  color: white;
+
+  font-size: 22px;
+
+  box-shadow: 0 8px 18px rgba(41, 98, 255, 0.25);
+
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    font-size 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.logo-text {
+/* Texte */
+.nova-text {
   display: flex;
   flex-direction: column;
+
+  min-width: 0;
+
   overflow: hidden;
-  transition: opacity 0.3s ease;
+
+  white-space: nowrap;
+
+  opacity: 1;
+
+  transition:
+    opacity 0.3s ease,
+    width 0.3s ease;
 }
 
-.logo-text h2 {
+.nova-text h2 {
   margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  color: #111827;
+
+  font-size: 21px;
+
   line-height: 1.1;
+
+  font-weight: 750;
+
+  color: #111827;
+
+  letter-spacing: -0.4px;
 }
 
-.logo-text span {
-  margin-top: 4px;
-  font-size: 12px;
-  color: #6b7280;
-  font-weight: 500;
+.nova-text span {
+  margin-top: 5px;
+
+  font-size: 11px;
+
+  line-height: 1;
+
+  font-weight: 600;
+
+  color: #8a94a6;
+
   text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
 
-/* Quand la sidebar est fermée */
-.sidebar.close .logo {
-  justify-content: center;
-}
-
-.sidebar.close .logo-text {
-  width: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-
-.sidebar.close .logo-icon {
-  margin: 0;
+  letter-spacing: 1px;
 }
 /* ================= MENU ================= */
 

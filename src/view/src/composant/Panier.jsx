@@ -30,7 +30,10 @@ function Panier() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (panier.length < 1) {
+      alert("Vous devez choisir des produits avants de passer commande !");
+      return;
+    }
     Passercommander();
     setShowForm(false);
   };
@@ -93,7 +96,7 @@ Client : ${(user?.prenom + " " + user?.nom).toUpperCase()}\n
         quantiteTabFilter.forEach((q) => {
           if (q.idProduit == id_produit) {
             quantite = q.quantite;
-            facture += `  
+            facture += `
             Produit ${i++} : ${nom_produit}
   Quantite : ${q.quantite}
   Prix : ${q.total}
@@ -116,7 +119,7 @@ Client : ${(user?.prenom + " " + user?.nom).toUpperCase()}\n
       } else {
         alert("Veuillez recommencer, une erreure s'est produite.");
       }
-      facture += `  
+      facture += `
       Total : ${prixTotal} FCFA
       ========================
       `;
@@ -144,6 +147,7 @@ Client : ${(user?.prenom + " " + user?.nom).toUpperCase()}\n
       `http://${localhost}/Boutique/src/controllers/api_commande.php`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -169,6 +173,7 @@ Client : ${(user?.prenom + " " + user?.nom).toUpperCase()}\n
       `http://${localhost}/Boutique/src/controllers/api_ligneCommande.php`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -299,7 +304,7 @@ Client : ${(user?.prenom + " " + user?.nom).toUpperCase()}\n
             <div className=" flex justify-between text-slate-300 border-b border-slate-700 pb-4 ">
               <span>Produits</span>
               <span>{panier.length}</span> <br />
-              <span> Livraison : 1000 FCFA </span>
+              {<span> Livraison : 1000 FCFA </span>}
             </div>
 
             <div className=" flex justify-between text-white font-bold text-xl mt-5 ">
@@ -308,10 +313,16 @@ Client : ${(user?.prenom + " " + user?.nom).toUpperCase()}\n
               <span>Total</span>
 
               <span className="text-blue-400">
-                {quantiteTabFilter.reduce(
-                  (acc, q) => acc + Number(q.total),
-                  0,
-                ) + 1000}
+                {panier.length == 0 &&
+                  quantiteTabFilter.reduce(
+                    (acc, q) => acc + Number(q.total),
+                    0,
+                  )}
+                {panier.length > 0 &&
+                  quantiteTabFilter.reduce(
+                    (acc, q) => acc + Number(q.total),
+                    0,
+                  ) + 1000}
                 FCFA
               </span>
             </div>
@@ -326,7 +337,7 @@ Client : ${(user?.prenom + " " + user?.nom).toUpperCase()}\n
         </div>
       </div>
       {/* Formlaire commande  */}
-      {showForm && (
+      {showForm && panier.length > 0 && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-white rounded-2xl w-full max-w-lg p-6">
             <h2 className="text-2xl font-bold mb-6">

@@ -1,20 +1,23 @@
 import "./Nav.css";
+// import Logout from "../login/Logout";?
+import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
 
-function Nav({ sidebarOpen, setSidebarOpen }) {
-  //   const [sidebarOpen, setSidebarOpen] = useState(true);
+function Nav({ sidebarOpen, setSidebarOpen, setSetPage, setPage }) {
+  const navigate = useNavigate();
   const menus = [
     {
-      icon: <i className="fa-solid fa-table-columns"></i>,
-      title: "Dashboard",
+      icon: <i className="fa-solid fa-chart-column"></i>,
+      title: "Statistiques",
+      active: true,
     },
     {
       icon: <i className="fa-solid fa-cart-shopping"></i>,
-      title: "Orders",
+      title: "Commandes",
     },
     {
       icon: <i className="fa-solid fa-box-open"></i>,
-      title: "Products",
+      title: "Produits",
     },
     {
       icon: <i className="fa-solid fa-tags"></i>,
@@ -22,40 +25,24 @@ function Nav({ sidebarOpen, setSidebarOpen }) {
     },
     {
       icon: <i className="fa-solid fa-users"></i>,
-      title: "Customers",
+      title: "Clients",
     },
     {
       icon: <i className="fa-regular fa-star"></i>,
-      title: "Reviews",
-    },
-    {
-      icon: <i className="fa-solid fa-circle-info"></i>,
-      title: "About Page",
-    },
-    {
-      icon: <i className="fa-regular fa-bell"></i>,
-      title: "Notifications",
-      badge: 3,
-    },
-    {
-      icon: <i className="fa-solid fa-chart-column"></i>,
-      title: "Statistics",
-      active: true,
-    },
-    {
-      icon: <i className="fa-solid fa-gear"></i>,
-      title: "Settings",
+      title: "Commentaires",
     },
   ];
-
+  function afficher(nom) {
+    setSetPage(nom);
+  }
   return (
     <aside className={sidebarOpen ? "sidebar open" : "sidebar close"}>
-      <div className="logo">
-        <div className="logo-icon">
+      <div className="nova">
+        <div className="nova-icon">
           <i className="fa-solid fa-shop"></i>
         </div>
 
-        <div className="logo-text">
+        <div className="nova-text">
           <h2>NovaShop</h2>
           <span>Admin Panel</span>
         </div>
@@ -65,8 +52,8 @@ function Nav({ sidebarOpen, setSidebarOpen }) {
         {menus.map((item, index) => (
           <li
             key={index}
-            className={item.active ? "active" : ""}
-            onClick={() => console.log(item.title)}
+            className={setPage == item.title ? "active" : ""}
+            onClick={() => afficher(item.title)}
           >
             <div className="left">
               <span className="icon">{item.icon}</span>
@@ -80,7 +67,7 @@ function Nav({ sidebarOpen, setSidebarOpen }) {
       </ul>
 
       <div className="logout">
-        <button>
+        <button onClick={() => navigate("/logout")}>
           <i className="fa-solid fa-right-from-bracket"></i>
           Logout
         </button>
@@ -107,98 +94,3 @@ function Nav({ sidebarOpen, setSidebarOpen }) {
 }
 
 export default Nav;
-
-// import "./Sidebar.css";
-
-// function Nav() {
-//   const menus = [
-//     {
-//       icon: <i className="fa-solid fa-table-columns"></i>,
-//       title: "Dashboard",
-//     },
-//     {
-//       icon: <i className="fa-solid fa-cart-shopping"></i>,
-//       title: "Orders",
-//     },
-//     {
-//       icon: <i className="fa-solid fa-box-open"></i>,
-//       title: "Products",
-//     },
-//     {
-//       icon: <i className="fa-solid fa-tags"></i>,
-//       title: "Categories",
-//     },
-//     {
-//       icon: <i className="fa-solid fa-users"></i>,
-//       title: "Customers",
-//     },
-//     {
-//       icon: <i className="fa-regular fa-star"></i>,
-//       title: "Reviews",
-//     },
-//     {
-//       icon: <i className="fa-solid fa-circle-info"></i>,
-//       title: "About Page",
-//     },
-//     {
-//       icon: <i className="fa-regular fa-bell"></i>,
-//       title: "Notifications",
-//       badge: 3,
-//     },
-//     {
-//       icon: <i className="fa-solid fa-chart-column"></i>,
-//       title: "Statistics",
-//       active: true,
-//     },
-//     {
-//       icon: <i className="fa-solid fa-gear"></i>,
-//       title: "Settings",
-//     },
-//   ];
-
-//   return (
-//     <aside className="sidebar">
-//       <div className="logo">
-//         <div className="logo-icon">
-//           <i className="fa-solid fa-bolt"></i>
-//         </div>
-
-//         <div>
-//           <h2>NovaShop</h2>
-//           <span>Admin Panel</span>
-//         </div>
-//       </div>
-
-//       <ul className="menu">
-//         {menus.map((item, index) => (
-//           <li
-//             key={index}
-//             className={item.active ? "active" : ""}
-//             onClick={() => console.log(item.title)}
-//           >
-//             <div className="left">
-//               <span className="icon">{item.icon}</span>
-//               <span>{item.title}</span>
-//             </div>
-
-//             {item.badge && <span className="badge">{item.badge}</span>}
-//           </li>
-//         ))}
-//       </ul>
-
-//       <div className="logout">
-//         <button>
-//           <i className="fa-solid fa-right-from-bracket"></i>
-//           Logout
-//         </button>
-//       </div>
-
-//       <div className="collapse">
-//         <i className="fa-solid fa-angles-left"></i>
-//         Collapse
-//       </div>
-//     </aside>
-//   );
-// }
-
-// export default Nav;

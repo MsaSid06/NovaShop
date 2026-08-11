@@ -7,7 +7,6 @@ import CreateCategorie from "./CreateCategorie";
 
 function CategorieTable() {
   const chemin = "/assets/categories/";
-
   const { categories } = useContext(CategorieContext);
   const { localhost } = useContext(LocalContext);
   const [categorieAffiche, setCategorieAffiche] = useState([]);
@@ -18,6 +17,7 @@ function CategorieTable() {
   useEffect(() => {
     async function a() {
       setCategorieAffiche(categories);
+      console.log(categories);
     }
     a();
   }, [categories]);
@@ -42,6 +42,7 @@ function CategorieTable() {
         `http://${localhost}/Boutique/src/controllers/api_categories.php`,
         {
           method: "DELETE",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -58,14 +59,11 @@ function CategorieTable() {
       );
     }
   }
-  // console.log(window.location.pathname);
   function updateCategorie(c) {
     setCategorieUpdate(c);
-    // console.log(c);
     setShowCreate(true);
     setAFaire(true);
   }
-  // console.log(categorie);
   return (
     <>
       <section className="produit-search">
@@ -101,13 +99,13 @@ function CategorieTable() {
 
           <tbody>
             {categorieAffiche.map((c) => (
-              <tr key={c.id_categorie}>
+              <tr key={c.id_categorie + new Date()}>
                 <td>
                   <div className="product-info">
                     <div className="product-image">
                       <img
-                        src={chemin + c.chemin_fichier}
-                        alt={c.nom_categorie}
+                        src={chemin + c?.chemin_fichier}
+                        alt={c?.nom_categorie}
                       />
                     </div>
                     <div>

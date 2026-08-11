@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import "./CSS/CreateProduct.css";
-// import { CategorieContext } from "../context/categorieContext";
 import LocalContext from "../context/Localhost";
 
 function CreateCategorie({ categorie, onClose, action }) {
@@ -14,19 +13,6 @@ function CreateCategorie({ categorie, onClose, action }) {
     chemin_fichier: "",
     image: null,
   });
-  {
-    /* -- -- Table : Categorie
--- CREATE TABLE Categorie (
---     id_categorie     INT AUTO_INCREMENT,
---     nom_categorie    VARCHAR(100)        NOT NULL,
---     description      TEXT                DEFAULT NULL,
---     date_creation    DATETIME            DEFAULT CURRENT_TIMESTAMP,
---     chemin_fichier   VARCHAR(255)        NOT NULL,
-
---     CONSTRAINT pk_categorie PRIMARY KEY (id_categorie)
-
--- ) ENGINE=InnoDB; */
-  }
 
   useEffect(() => {
     async function a() {
@@ -78,6 +64,7 @@ function CreateCategorie({ categorie, onClose, action }) {
         `http://${localhost}/Boutique/src/controllers/api_categories.php`,
         {
           method: "POST",
+          credentials: "include",
           body: formData,
         },
       );
@@ -101,6 +88,7 @@ function CreateCategorie({ categorie, onClose, action }) {
         `http://${localhost}/Boutique/src/controllers/api_categories.php`,
         {
           method: "PUT",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

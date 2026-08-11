@@ -10,6 +10,9 @@ function AvisContextProvider({ children }) {
       try {
         const response = await fetch(
           `http://${localhost}/Boutique/src/controllers/api_avis.php`,
+          {
+            credentials: "include",
+          },
         );
         const data = await response.json();
         setAvis(data);
