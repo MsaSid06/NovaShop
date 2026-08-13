@@ -17,7 +17,7 @@ switch ($method) {
     // $action = $data['action'] ?? null;
     // if ($action === 'getCategorie' || $action === null) {
     $categories = getCategorie();
-    echo  $categories ? json_encode([$categories]) : json_encode(["message" => false]);
+    echo  $categories ? json_encode($categories) : json_encode(["message" => false]);
     break;
   // } else {
 
